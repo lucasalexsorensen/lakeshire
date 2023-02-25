@@ -55,11 +55,12 @@ function ls.pixelinfo:UpdatePB(pbmessage)
 	end
 	local channel_remainder = #ser % 3
 	local r = METAPIXELS + reqpixels
-	local upper_r = r % 256
-	local lower_r = math.floor(r / 256) % 256
+	-- since r can be > 256, we need to split it into two bytes using a little endian order
+	local least_significant = r % 256
+	local most_significant = math.floor(r / 256) % 256
 
 	ls.pixelinfo:OrderFrames()
-	ls.pixelinfo.frames[2]:SetBackdropColor(channel_remainder / 255, upper_r / 255, lower_r / 255)
+	ls.pixelinfo.frames[2]:SetBackdropColor(channel_remainder / 255, least_significant / 255, most_significant / 255)
 end
 
 ---- create control pixels ----

@@ -16,25 +16,17 @@ local t = {
 		{ 7 },
 		{ 8 },
 		{ 9 },
-		{ 10 },
-		{ 11 },
-		{ 12 },
-		{ 13 },
-		["SlotState"] = { 11 },
 		["BotState"] = { 4 },
-		["Slot"] = { 12 },
-		["Class"] = { 7 },
-		["Unit"] = { 8 },
 		["Player"] = { 5 },
 		["Position"] = { 9 },
 		["Target"] = { 6 },
-		["Inventory"] = { 13 },
-		["BagId"] = { 10 },
 		["StructuredMessage"] = { 3 },
+		["Class"] = { 7 },
+		["Unit"] = { 8 },
 	},
 	-- Table: {3}
 	{
-		["fields"] = { 14 },
+		["fields"] = { 10 },
 		["name"] = "StructuredMessage",
 		[".type"] = "message",
 	},
@@ -42,17 +34,17 @@ local t = {
 	{
 		[".type"] = "enum",
 		["name"] = "BotState",
-		["values"] = { 15 },
+		["values"] = { 11 },
 	},
 	-- Table: {5}
 	{
-		["fields"] = { 16 },
+		["fields"] = { 12 },
 		["name"] = "Player",
 		[".type"] = "message",
 	},
 	-- Table: {6}
 	{
-		["fields"] = { 17 },
+		["fields"] = { 13 },
 		["name"] = "Target",
 		[".type"] = "message",
 	},
@@ -60,56 +52,30 @@ local t = {
 	{
 		[".type"] = "enum",
 		["name"] = "Class",
-		["values"] = { 18 },
+		["values"] = { 14 },
 	},
 	-- Table: {8}
 	{
-		["fields"] = { 19 },
+		["fields"] = { 15 },
 		["name"] = "Unit",
 		[".type"] = "message",
 	},
 	-- Table: {9}
 	{
-		["fields"] = { 20 },
+		["fields"] = { 16 },
 		["name"] = "Position",
 		[".type"] = "message",
 	},
 	-- Table: {10}
 	{
-		[".type"] = "enum",
-		["name"] = "BagId",
-		["values"] = { 21 },
+		{ 17 },
+		{ 18 },
+		{ 19 },
+		["Target"] = { 19 },
+		["BotState"] = { 17 },
+		["Player"] = { 18 },
 	},
 	-- Table: {11}
-	{
-		[".type"] = "enum",
-		["name"] = "SlotState",
-		["values"] = { 22 },
-	},
-	-- Table: {12}
-	{
-		["fields"] = { 23 },
-		["name"] = "Slot",
-		[".type"] = "message",
-	},
-	-- Table: {13}
-	{
-		["fields"] = { 24 },
-		["name"] = "Inventory",
-		[".type"] = "message",
-	},
-	-- Table: {14}
-	{
-		{ 25 },
-		{ 26 },
-		{ 27 },
-		{ 28 },
-		["Target"] = { 27 },
-		["Player"] = { 26 },
-		["Inventory"] = { 28 },
-		["BotState"] = { 25 },
-	},
-	-- Table: {15}
 	{
 		"Running",
 		"DumpPos",
@@ -118,19 +84,19 @@ local t = {
 		["DumpPos"] = 2,
 		["Running"] = 1,
 	},
-	-- Table: {16}
+	-- Table: {12}
 	{
-		{ 29 },
-		{ 30 },
-		["PosInfo"] = { 30 },
-		["UnitInfo"] = { 29 },
+		{ 20 },
+		{ 21 },
+		["PosInfo"] = { 21 },
+		["UnitInfo"] = { 20 },
 	},
-	-- Table: {17}
+	-- Table: {13}
 	{
-		{ 31 },
-		["UnitInfo"] = { 31 },
+		{ 22 },
+		["UnitInfo"] = { 22 },
 	},
-	-- Table: {18}
+	-- Table: {14}
 	{
 		"Warrior",
 		"Paladin",
@@ -157,69 +123,33 @@ local t = {
 		["DeathKnight"] = 6,
 		["None"] = 0,
 	},
-	-- Table: {19}
+	-- Table: {15}
 	{
+		{ 23 },
+		{ 24 },
+		{ 25 },
+		{ 26 },
+		{ 27 },
+		{ 28 },
+		{ 29 },
+		["HealthMax"] = { 27 },
+		["Name"] = { 23 },
+		["PowerMax"] = { 29 },
+		["Class"] = { 25 },
+		["Level"] = { 24 },
+		["HealthCurrent"] = { 26 },
+		["PowerCurrent"] = { 28 },
+	},
+	-- Table: {16}
+	{
+		{ 30 },
+		{ 31 },
 		{ 32 },
-		{ 33 },
-		{ 34 },
-		{ 35 },
-		{ 36 },
-		{ 37 },
-		{ 38 },
-		["HealthMax"] = { 36 },
-		["Name"] = { 32 },
-		["PowerMax"] = { 38 },
-		["Class"] = { 34 },
-		["Level"] = { 33 },
-		["HealthCurrent"] = { 35 },
-		["PowerCurrent"] = { 37 },
+		["MapY"] = { 31 },
+		["MapX"] = { 30 },
+		["Facing"] = { 32 },
 	},
-	-- Table: {20}
-	{
-		{ 39 },
-		{ 40 },
-		{ 41 },
-		["MapY"] = { 40 },
-		["MapX"] = { 39 },
-		["Facing"] = { 41 },
-	},
-	-- Table: {21}
-	{
-		"One",
-		"Two",
-		"Three",
-		"Four",
-		[0] = "Backpack",
-		["Four"] = 4,
-		["Two"] = 2,
-		["One"] = 1,
-		["Three"] = 3,
-		["Backpack"] = 0,
-	},
-	-- Table: {22}
-	{
-		"Empty",
-		[0] = "Taken",
-		["Empty"] = 1,
-		["Taken"] = 0,
-	},
-	-- Table: {23}
-	{
-		{ 42 },
-		{ 43 },
-		{ 44 },
-		{ 45 },
-		["State"] = { 43 },
-		["BagId"] = { 42 },
-		["ItemCount"] = { 45 },
-		["ItemId"] = { 44 },
-	},
-	-- Table: {24}
-	{
-		{ 46 },
-		["Slots"] = { 46 },
-	},
-	-- Table: {25}
+	-- Table: {17}
 	{
 		["ftype"] = "BotState",
 		["name"] = "BotState",
@@ -227,7 +157,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 1,
 	},
-	-- Table: {26}
+	-- Table: {18}
 	{
 		["ftype"] = "Player",
 		["name"] = "Player",
@@ -235,7 +165,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 2,
 	},
-	-- Table: {27}
+	-- Table: {19}
 	{
 		["ftype"] = "Target",
 		["name"] = "Target",
@@ -243,15 +173,7 @@ local t = {
 		["rule"] = "optional",
 		["tag"] = 3,
 	},
-	-- Table: {28}
-	{
-		["ftype"] = "Inventory",
-		["name"] = "Inventory",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 3,
-	},
-	-- Table: {29}
+	-- Table: {20}
 	{
 		["ftype"] = "Unit",
 		["name"] = "UnitInfo",
@@ -259,7 +181,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 1,
 	},
-	-- Table: {30}
+	-- Table: {21}
 	{
 		["ftype"] = "Position",
 		["name"] = "PosInfo",
@@ -267,7 +189,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 2,
 	},
-	-- Table: {31}
+	-- Table: {22}
 	{
 		["ftype"] = "Unit",
 		["name"] = "UnitInfo",
@@ -275,7 +197,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 1,
 	},
-	-- Table: {32}
+	-- Table: {23}
 	{
 		["ftype"] = "string",
 		["name"] = "Name",
@@ -283,7 +205,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 1,
 	},
-	-- Table: {33}
+	-- Table: {24}
 	{
 		["ftype"] = "int64",
 		["name"] = "Level",
@@ -291,7 +213,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 2,
 	},
-	-- Table: {34}
+	-- Table: {25}
 	{
 		["ftype"] = "Class",
 		["name"] = "Class",
@@ -299,7 +221,7 @@ local t = {
 		["rule"] = "optional",
 		["tag"] = 3,
 	},
-	-- Table: {35}
+	-- Table: {26}
 	{
 		["ftype"] = "int64",
 		["name"] = "HealthCurrent",
@@ -307,7 +229,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 4,
 	},
-	-- Table: {36}
+	-- Table: {27}
 	{
 		["ftype"] = "int64",
 		["name"] = "HealthMax",
@@ -315,7 +237,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 5,
 	},
-	-- Table: {37}
+	-- Table: {28}
 	{
 		["ftype"] = "int64",
 		["name"] = "PowerCurrent",
@@ -323,7 +245,7 @@ local t = {
 		["rule"] = "optional",
 		["tag"] = 6,
 	},
-	-- Table: {38}
+	-- Table: {29}
 	{
 		["ftype"] = "int64",
 		["name"] = "PowerMax",
@@ -331,7 +253,7 @@ local t = {
 		["rule"] = "optional",
 		["tag"] = 7,
 	},
-	-- Table: {39}
+	-- Table: {30}
 	{
 		["ftype"] = "uint64",
 		["name"] = "MapX",
@@ -339,7 +261,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 1,
 	},
-	-- Table: {40}
+	-- Table: {31}
 	{
 		["ftype"] = "uint64",
 		["name"] = "MapY",
@@ -347,53 +269,13 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 2,
 	},
-	-- Table: {41}
+	-- Table: {32}
 	{
 		["ftype"] = "uint64",
 		["name"] = "Facing",
 		[".type"] = "field",
 		["rule"] = "required",
 		["tag"] = 3,
-	},
-	-- Table: {42}
-	{
-		["ftype"] = "BagId",
-		["name"] = "BagId",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 1,
-	},
-	-- Table: {43}
-	{
-		["ftype"] = "SlotState",
-		["name"] = "State",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 2,
-	},
-	-- Table: {44}
-	{
-		["ftype"] = "int32",
-		["name"] = "ItemId",
-		[".type"] = "field",
-		["rule"] = "optional",
-		["tag"] = 3,
-	},
-	-- Table: {45}
-	{
-		["ftype"] = "int32",
-		["name"] = "ItemCount",
-		[".type"] = "field",
-		["rule"] = "optional",
-		["tag"] = 4,
-	},
-	-- Table: {46}
-	{
-		["ftype"] = "Slot",
-		["name"] = "Slots",
-		[".type"] = "field",
-		["rule"] = "repeated",
-		["tag"] = 1,
 	},
 }
 local function loadast()

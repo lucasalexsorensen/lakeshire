@@ -66,7 +66,7 @@ function ls:InitializeState(name)
 	if name == ADDONNAME then
 		ls.InitializeBotState()
 		ls:InitializePlayer()
-		ls:InitializeInventory()
+		-- ls:InitializeInventory()
 
 		ls.pixelinfo:UpdatePB(ls.testproto)
 
@@ -117,30 +117,30 @@ function ls:UpdatePosInfo()
 	}
 end
 
-function ls:InitializeInventory()
-	ls.testproto.Inventory = { Slots = {} }
+-- function ls:InitializeInventory()
+-- 	ls.testproto.Inventory = { Slots = {} }
 
-	-- for i=1,125 do
-	--     ls.testproto.Inventory.Slots[#ls.testproto.Inventory.Slots + 1] = { BagId = 0, State = 1 }
-	-- end
+-- 	-- for i=1,125 do
+-- 	--     ls.testproto.Inventory.Slots[#ls.testproto.Inventory.Slots + 1] = { BagId = 0, State = 1 }
+-- 	-- end
 
-	for i = 0, 4 do
-		local J = C_Container.GetContainerNumSlots(i)
-		for j = 1, J do
-			ls.testproto.Inventory.Slots[#ls.testproto.Inventory.Slots + 1] = { BagId = i, State = 1 }
-			local _, count = C_Container.GetContainerItemInfo(i, j)
-			if count ~= nil then
-				if count > 0 then
-					ls.testproto.Inventory.Slots[#ls.testproto.Inventory.Slots + 1] = {
-						BagId = i,
-						State = 0,
-						ItemId = 1337,
-						ItemCount = count,
-					}
-				end
-			end
-		end
-	end
-end
+-- 	for i = 0, 4 do
+-- 		local J = C_Container.GetContainerNumSlots(i)
+-- 		for j = 1, J do
+-- 			ls.testproto.Inventory.Slots[#ls.testproto.Inventory.Slots + 1] = { BagId = i, State = 1 }
+-- 			local _, count = C_Container.GetContainerItemInfo(i, j)
+-- 			if count ~= nil then
+-- 				if count > 0 then
+-- 					ls.testproto.Inventory.Slots[#ls.testproto.Inventory.Slots + 1] = {
+-- 						BagId = i,
+-- 						State = 0,
+-- 						ItemId = 1337,
+-- 						ItemCount = count,
+-- 					}
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+-- end
 
 ls:Subscribe()

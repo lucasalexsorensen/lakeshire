@@ -4,7 +4,7 @@ message StructuredMessage {
     required BotState BotState = 1;
     required Player Player = 2;
     optional Target Target = 3;
-    required Inventory Inventory = 3;
+    // required Inventory Inventory = 4;
 }
 
 enum BotState {
@@ -53,26 +53,26 @@ message Position {
     required uint64 Facing = 3;
 }
 
-enum BagId {
-    Backpack = 0;
-    One = 1;
-    Two = 2;
-    Three = 3;
-    Four = 4;
-}
+// enum BagId {
+//     Backpack = 0;
+//     One = 1;
+//     Two = 2;
+//     Three = 3;
+//     Four = 4;
+// }
 
-enum SlotState {
-    Taken = 0;
-    Empty = 1;
-}
+// enum SlotState {
+//     Taken = 0;
+//     Empty = 1;
+// }
 
-message Slot {
-    required BagId BagId = 1;
-    required SlotState State = 2;
-    optional int32 ItemId = 3;
-    optional int32 ItemCount = 4;
-}
+// message Slot {
+//     required BagId BagId = 1;
+//     required SlotState State = 2;
+//     optional int32 ItemId = 3;
+//     optional int32 ItemCount = 4;
+// }
 
-message Inventory {
-    repeated Slot Slots = 1;
-}
+// message Inventory {
+//     repeated Slot Slots = 1;
+// }
