@@ -2,17 +2,26 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotateLeft, faSave, faArrowsRotate, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CanvasDraw from "react-canvas-draw";
+import { Store } from "tauri-plugin-store-api";
+import { ZoneInfo } from "../types/Zone";
 
 
 type EditorMapProps = {
-    backgroundImage: string | null;
+    currentZoneInfo: ZoneInfo;
+    handleSave: (x: any) => void;
 }
+
+type EditorMapState = {
+    savedDrawDataString: string
+}
+
+const store = new Store(".settings.dat");
 
 export default class EditorMap extends React.Component<EditorMapProps> {
     canvasRef: any;
 
     handleSave () {
-        console.log(JSON.parse(this.canvasRef.getSaveData()));
+        return this.props.handleSave(this.canvasRef.getSaveData());
     }
 
     handleClear ()  {
@@ -27,13 +36,18 @@ export default class EditorMap extends React.Component<EditorMapProps> {
         this.canvasRef.undo();
     }
 
+    async componentDidMount () {
+        const { currentZoneInfo } = this.props;
+        const savedDrawDataString = await store.get(`draw-data-${currentZoneInfo.name}`);
+        if (savedDrawDataString) {
+            this.canvasRef.loadSaveData(JSON.stringify(savedDrawDataString), false);
+        }
+    }
+
 
     render () {
-        if (!this.props.backgroundImage) {
-            return <div>
-                Pick a zone to start editing
-            </div>;
-        }
+        const { currentZoneInfo } = this.props;
+        const imagePath = `/zones/${currentZoneInfo.imageName ?? currentZoneInfo.name}.jpg`;
 
         return <React.Fragment>
             <div className="flex py-2 mb-3 px-3 w-1/2 bg-slate-700 space-x-4 rounded-lg justify-around">
@@ -49,10 +63,11 @@ export default class EditorMap extends React.Component<EditorMapProps> {
                 lazyRadius={3}
                 brushColor={"#f00"}
                 catenaryColor={"#faa"}
-                imgSrc={this.props.backgroundImage}
+                imgSrc={imagePath}
                 canvasWidth={1200}
                 canvasHeight={750}
                 enablePanAndZoom={true}
+                loadTimeOffset={2}
             />
         </React.Fragment>
     }

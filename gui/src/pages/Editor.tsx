@@ -3,16 +3,29 @@ import EditorMap from "../components/EditorMap";
 import EditorTree from "../components/EditorTree";
 import ZoneData from '../consts/ZoneData'
 import { ZoneInfo } from "../types/Zone";
+import { Store } from "tauri-plugin-store-api";
 
 
 type EditorState = {
     currentZoneInfo?: ZoneInfo;
 }
 
+type DrawData = {
+    lines: {
+        points: { x: number, y: number }[];
+        brushColor: string;
+        brushRadius: number;
+    }[];
+    height: number;
+    width: number;
+}
+
+const store = new Store(".settings.dat");
+
+
 class Editor extends React.Component<{}, EditorState> {
     constructor (props: any) {
         super(props);
-
 
         const rawZoneData = ZoneData['Kalimdor'].find(x => x.name == 'Durotar')
         if (!rawZoneData) throw new Error('Default zone not found');
@@ -26,12 +39,16 @@ class Editor extends React.Component<{}, EditorState> {
         }
     }
 
+    async handleSave (data: any) {
+        const parsedData = JSON.parse(data) as DrawData;
+        await store.set(`draw-data-${this.state.currentZoneInfo?.name}`, parsedData);
+    }
+
     render () {
         const { currentZoneInfo } = this.state;
-        const imagePath = `/zones/${currentZoneInfo?.imageName ?? currentZoneInfo?.name}.jpg`;
         if (!currentZoneInfo) return (<div>...</div>);
         return (
-            <div className="grid grid-cols-6">
+            <div className="grid grid-cols-6 p-3">
                 <div className="col-span-1 flex flex-col items-center p-2">
                     <EditorTree
                         currentZoneInfo={currentZoneInfo}
@@ -42,7 +59,10 @@ class Editor extends React.Component<{}, EditorState> {
                 </div>
 
                 <main className="col-span-5 flex flex-col items-center">
-                    <EditorMap backgroundImage={imagePath} />
+                    <EditorMap
+                        currentZoneInfo={currentZoneInfo}
+                        handleSave={this.handleSave.bind(this)}
+                    />
                 </main>
             </ div>
         );
