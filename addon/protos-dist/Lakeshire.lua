@@ -88,13 +88,15 @@ local t = {
 	{
 		{ 20 },
 		{ 21 },
+		{ 22 },
+		["Flags"] = { 22 },
 		["PosInfo"] = { 21 },
 		["UnitInfo"] = { 20 },
 	},
 	-- Table: {13}
 	{
-		{ 22 },
-		["UnitInfo"] = { 22 },
+		{ 23 },
+		["UnitInfo"] = { 23 },
 	},
 	-- Table: {14}
 	{
@@ -125,29 +127,35 @@ local t = {
 	},
 	-- Table: {15}
 	{
-		{ 23 },
 		{ 24 },
 		{ 25 },
 		{ 26 },
 		{ 27 },
 		{ 28 },
 		{ 29 },
-		["HealthMax"] = { 27 },
-		["Name"] = { 23 },
-		["PowerMax"] = { 29 },
-		["Class"] = { 25 },
-		["Level"] = { 24 },
-		["HealthCurrent"] = { 26 },
-		["PowerCurrent"] = { 28 },
+		{ 30 },
+		["HealthMax"] = { 28 },
+		["Name"] = { 24 },
+		["PowerMax"] = { 30 },
+		["Class"] = { 26 },
+		["Level"] = { 25 },
+		["HealthCurrent"] = { 27 },
+		["PowerCurrent"] = { 29 },
 	},
 	-- Table: {16}
 	{
-		{ 30 },
 		{ 31 },
 		{ 32 },
-		["MapY"] = { 31 },
-		["MapX"] = { 30 },
-		["Facing"] = { 32 },
+		{ 33 },
+		{ 34 },
+		{ 35 },
+		{ 36 },
+		["WorldY"] = { 34 },
+		["Facing"] = { 36 },
+		["InstanceId"] = { 35 },
+		["MapY"] = { 32 },
+		["WorldX"] = { 33 },
+		["MapX"] = { 31 },
 	},
 	-- Table: {17}
 	{
@@ -191,13 +199,21 @@ local t = {
 	},
 	-- Table: {22}
 	{
+		["ftype"] = "uint64",
+		["name"] = "Flags",
+		[".type"] = "field",
+		["rule"] = "required",
+		["tag"] = 3,
+	},
+	-- Table: {23}
+	{
 		["ftype"] = "Unit",
 		["name"] = "UnitInfo",
 		[".type"] = "field",
 		["rule"] = "required",
 		["tag"] = 1,
 	},
-	-- Table: {23}
+	-- Table: {24}
 	{
 		["ftype"] = "string",
 		["name"] = "Name",
@@ -205,7 +221,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 1,
 	},
-	-- Table: {24}
+	-- Table: {25}
 	{
 		["ftype"] = "int64",
 		["name"] = "Level",
@@ -213,7 +229,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 2,
 	},
-	-- Table: {25}
+	-- Table: {26}
 	{
 		["ftype"] = "Class",
 		["name"] = "Class",
@@ -221,7 +237,7 @@ local t = {
 		["rule"] = "optional",
 		["tag"] = 3,
 	},
-	-- Table: {26}
+	-- Table: {27}
 	{
 		["ftype"] = "int64",
 		["name"] = "HealthCurrent",
@@ -229,7 +245,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 4,
 	},
-	-- Table: {27}
+	-- Table: {28}
 	{
 		["ftype"] = "int64",
 		["name"] = "HealthMax",
@@ -237,7 +253,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 5,
 	},
-	-- Table: {28}
+	-- Table: {29}
 	{
 		["ftype"] = "int64",
 		["name"] = "PowerCurrent",
@@ -245,7 +261,7 @@ local t = {
 		["rule"] = "optional",
 		["tag"] = 6,
 	},
-	-- Table: {29}
+	-- Table: {30}
 	{
 		["ftype"] = "int64",
 		["name"] = "PowerMax",
@@ -253,7 +269,7 @@ local t = {
 		["rule"] = "optional",
 		["tag"] = 7,
 	},
-	-- Table: {30}
+	-- Table: {31}
 	{
 		["ftype"] = "uint64",
 		["name"] = "MapX",
@@ -261,7 +277,7 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 1,
 	},
-	-- Table: {31}
+	-- Table: {32}
 	{
 		["ftype"] = "uint64",
 		["name"] = "MapY",
@@ -269,13 +285,37 @@ local t = {
 		["rule"] = "required",
 		["tag"] = 2,
 	},
-	-- Table: {32}
+	-- Table: {33}
+	{
+		["ftype"] = "sint64",
+		["name"] = "WorldX",
+		[".type"] = "field",
+		["rule"] = "required",
+		["tag"] = 3,
+	},
+	-- Table: {34}
+	{
+		["ftype"] = "sint64",
+		["name"] = "WorldY",
+		[".type"] = "field",
+		["rule"] = "required",
+		["tag"] = 4,
+	},
+	-- Table: {35}
+	{
+		["ftype"] = "uint64",
+		["name"] = "InstanceId",
+		[".type"] = "field",
+		["rule"] = "required",
+		["tag"] = 5,
+	},
+	-- Table: {36}
 	{
 		["ftype"] = "uint64",
 		["name"] = "Facing",
 		[".type"] = "field",
 		["rule"] = "required",
-		["tag"] = 3,
+		["tag"] = 6,
 	},
 }
 local function loadast()

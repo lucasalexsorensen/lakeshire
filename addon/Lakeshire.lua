@@ -66,7 +66,6 @@ function ls:InitializeState(name)
 	if name == ADDONNAME then
 		ls.InitializeBotState()
 		ls:InitializePlayer()
-		-- ls:InitializeInventory()
 
 		ls.pixelinfo:UpdatePB(ls.testproto)
 
@@ -96,13 +95,18 @@ function ls:InitializePlayer()
 	ls.testproto.Player.UnitInfo.PowerCurrent = UnitPower("player")
 	ls.testproto.Player.UnitInfo.PowerMax = UnitPowerMax("player")
 
+	-- Pos Info
 	ls:UpdatePosInfo()
+
+	-- Flags
+	ls:UpdatePlayerFlags()
 end
 
 function ls:UpdatePosInfo()
 	local map = C_Map.GetBestMapForUnit("player")
 	local position = C_Map.GetPlayerMapPosition(map, "player")
-	local x, y = position:GetXY()
+	local mapx, mapy = position:GetXY()
+	local y, x, _z, instanceid = UnitPosition("player")
 	if x == nil or y == nil then
 		x = 0
 		y = 0
@@ -111,36 +115,17 @@ function ls:UpdatePosInfo()
 	-- local m = ({p:GetChildren()})[9]    -- also not sure if needed
 	local rot = GetPlayerFacing()
 	ls.testproto.Player.PosInfo = {
-		MapX = math.ceil(x * 1e14),
-		MapY = math.ceil(y * 1e14),
+		MapX = math.ceil(mapx * 1e14),
+		MapY = math.ceil(mapy * 1e14),
+		WorldX = math.ceil(x * 1e3),
+		WorldY = math.ceil(y * 1e3),
+		InstanceId = instanceid,
 		Facing = rot * 1e10,
 	}
 end
 
--- function ls:InitializeInventory()
--- 	ls.testproto.Inventory = { Slots = {} }
-
--- 	-- for i=1,125 do
--- 	--     ls.testproto.Inventory.Slots[#ls.testproto.Inventory.Slots + 1] = { BagId = 0, State = 1 }
--- 	-- end
-
--- 	for i = 0, 4 do
--- 		local J = C_Container.GetContainerNumSlots(i)
--- 		for j = 1, J do
--- 			ls.testproto.Inventory.Slots[#ls.testproto.Inventory.Slots + 1] = { BagId = i, State = 1 }
--- 			local _, count = C_Container.GetContainerItemInfo(i, j)
--- 			if count ~= nil then
--- 				if count > 0 then
--- 					ls.testproto.Inventory.Slots[#ls.testproto.Inventory.Slots + 1] = {
--- 						BagId = i,
--- 						State = 0,
--- 						ItemId = 1337,
--- 						ItemCount = count,
--- 					}
--- 				end
--- 			end
--- 		end
--- 	end
--- end
+function ls:UpdatePlayerFlags()
+	ls.testproto.Player.Flags = (IsOutdoors() and 1 or 0) + (IsMounted() and 2 or 0) + (IsFlying() and 4 or 0)
+end
 
 ls:Subscribe()

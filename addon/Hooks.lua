@@ -40,6 +40,7 @@ end
 
 function ls:HandleOnUpdate()
 	ls:UpdatePosInfo()
+	ls:UpdatePlayerFlags()
 	ls.pixelinfo:UpdatePB(ls.testproto)
 end
 

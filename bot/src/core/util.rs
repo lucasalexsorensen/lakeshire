@@ -15,17 +15,25 @@ pub fn print_all_info (msg: &Lakeshire::StructuredMessage) {
     println!("HP:\t{} / {}", p.get_HealthCurrent(), p.get_HealthMax());
     println!("Power:\t{} / {}", p.get_PowerCurrent(), p.get_PowerMax());
 
+    println!("\nMap position:");
     let pos = msg.get_Player().get_PosInfo();
-    println!("X:\t{}\nY:\t{}\nFacing:\t{:.2}", pos.get_MapX(), pos.get_MapY(), pos.get_Facing() as f64 / 1e10);
+    println!("X:\t{}\nY:\t{}\nFacing:\t{:.2}", pos.get_MapX() as f64 / 1e14, pos.get_MapY() as f64 / 1e14, pos.get_Facing() as f64 / 1e10);
+
+    println!("\nWorld position:");
+    let pos = msg.get_Player().get_PosInfo();
+    println!("X:\t\t{}\nY:\t\t{}\nInstanceID:\t{:.2}", pos.get_WorldX() as f64 / 1e3, pos.get_WorldY() as f64 / 1e3, pos.get_InstanceId());
+
+    println!("\nFlags:");
+    println!("IsOutdoors:\t{}", (msg.get_Player().get_Flags() & 1) != 0);
+    println!("IsMounted:\t{}", (msg.get_Player().get_Flags() & 2) != 0);
+    println!("IsFlying:\t{}", (msg.get_Player().get_Flags() & 4) != 0);
+
 
     println!("\n-----------------------\n");
     let t = msg.get_Target().get_UnitInfo();
     println!("Target:\t{}\t(level {})", t.get_Name(), t.get_Level());
     println!("HP:\t{} / {}", t.get_HealthCurrent(), t.get_HealthMax());
 
-    // println!("\n-----------------------\n");
-    // println!("BAG INFO:");
-    // println!("Found {} slots", msg.get_Inventory().get_Slots().len());
 }
 
 pub fn translate_class_name (c: Lakeshire::Class) -> String {

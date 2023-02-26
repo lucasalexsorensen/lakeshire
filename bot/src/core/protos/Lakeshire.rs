@@ -300,6 +300,7 @@ pub struct Player {
     // message fields
     pub UnitInfo: ::protobuf::SingularPtrField<Unit>,
     pub PosInfo: ::protobuf::SingularPtrField<Position>,
+    Flags: ::std::option::Option<u64>,
     // special fields
     pub unknown_fields: ::protobuf::UnknownFields,
     pub cached_size: ::protobuf::CachedSize,
@@ -381,6 +382,25 @@ impl Player {
     pub fn take_PosInfo(&mut self) -> Position {
         self.PosInfo.take().unwrap_or_else(|| Position::new())
     }
+
+    // required uint64 Flags = 3;
+
+
+    pub fn get_Flags(&self) -> u64 {
+        self.Flags.unwrap_or(0)
+    }
+    pub fn clear_Flags(&mut self) {
+        self.Flags = ::std::option::Option::None;
+    }
+
+    pub fn has_Flags(&self) -> bool {
+        self.Flags.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_Flags(&mut self, v: u64) {
+        self.Flags = ::std::option::Option::Some(v);
+    }
 }
 
 impl ::protobuf::Message for Player {
@@ -389,6 +409,9 @@ impl ::protobuf::Message for Player {
             return false;
         }
         if self.PosInfo.is_none() {
+            return false;
+        }
+        if self.Flags.is_none() {
             return false;
         }
         for v in &self.UnitInfo {
@@ -414,6 +437,13 @@ impl ::protobuf::Message for Player {
                 2 => {
                     ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.PosInfo)?;
                 },
+                3 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.Flags = ::std::option::Option::Some(tmp);
+                },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
                 },
@@ -434,6 +464,9 @@ impl ::protobuf::Message for Player {
             let len = v.compute_size();
             my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
         }
+        if let Some(v) = self.Flags {
+            my_size += ::protobuf::rt::value_size(3, v, ::protobuf::wire_format::WireTypeVarint);
+        }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
         my_size
@@ -449,6 +482,9 @@ impl ::protobuf::Message for Player {
             os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
             os.write_raw_varint32(v.get_cached_size())?;
             v.write_to_with_cached_sizes(os)?;
+        }
+        if let Some(v) = self.Flags {
+            os.write_uint64(3, v)?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
@@ -498,6 +534,11 @@ impl ::protobuf::Message for Player {
                 |m: &Player| { &m.PosInfo },
                 |m: &mut Player| { &mut m.PosInfo },
             ));
+            fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                "Flags",
+                |m: &Player| { &m.Flags },
+                |m: &mut Player| { &mut m.Flags },
+            ));
             ::protobuf::reflect::MessageDescriptor::new_pb_name::<Player>(
                 "Player",
                 fields,
@@ -516,6 +557,7 @@ impl ::protobuf::Clear for Player {
     fn clear(&mut self) {
         self.UnitInfo.clear();
         self.PosInfo.clear();
+        self.Flags = ::std::option::Option::None;
         self.unknown_fields.clear();
     }
 }
@@ -1125,6 +1167,9 @@ pub struct Position {
     // message fields
     MapX: ::std::option::Option<u64>,
     MapY: ::std::option::Option<u64>,
+    WorldX: ::std::option::Option<i64>,
+    WorldY: ::std::option::Option<i64>,
+    InstanceId: ::std::option::Option<u64>,
     Facing: ::std::option::Option<u64>,
     // special fields
     pub unknown_fields: ::protobuf::UnknownFields,
@@ -1180,7 +1225,64 @@ impl Position {
         self.MapY = ::std::option::Option::Some(v);
     }
 
-    // required uint64 Facing = 3;
+    // required sint64 WorldX = 3;
+
+
+    pub fn get_WorldX(&self) -> i64 {
+        self.WorldX.unwrap_or(0)
+    }
+    pub fn clear_WorldX(&mut self) {
+        self.WorldX = ::std::option::Option::None;
+    }
+
+    pub fn has_WorldX(&self) -> bool {
+        self.WorldX.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_WorldX(&mut self, v: i64) {
+        self.WorldX = ::std::option::Option::Some(v);
+    }
+
+    // required sint64 WorldY = 4;
+
+
+    pub fn get_WorldY(&self) -> i64 {
+        self.WorldY.unwrap_or(0)
+    }
+    pub fn clear_WorldY(&mut self) {
+        self.WorldY = ::std::option::Option::None;
+    }
+
+    pub fn has_WorldY(&self) -> bool {
+        self.WorldY.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_WorldY(&mut self, v: i64) {
+        self.WorldY = ::std::option::Option::Some(v);
+    }
+
+    // required uint64 InstanceId = 5;
+
+
+    pub fn get_InstanceId(&self) -> u64 {
+        self.InstanceId.unwrap_or(0)
+    }
+    pub fn clear_InstanceId(&mut self) {
+        self.InstanceId = ::std::option::Option::None;
+    }
+
+    pub fn has_InstanceId(&self) -> bool {
+        self.InstanceId.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_InstanceId(&mut self, v: u64) {
+        self.InstanceId = ::std::option::Option::Some(v);
+    }
+
+    // required uint64 Facing = 6;
 
 
     pub fn get_Facing(&self) -> u64 {
@@ -1206,6 +1308,15 @@ impl ::protobuf::Message for Position {
             return false;
         }
         if self.MapY.is_none() {
+            return false;
+        }
+        if self.WorldX.is_none() {
+            return false;
+        }
+        if self.WorldY.is_none() {
+            return false;
+        }
+        if self.InstanceId.is_none() {
             return false;
         }
         if self.Facing.is_none() {
@@ -1236,6 +1347,27 @@ impl ::protobuf::Message for Position {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
+                    let tmp = is.read_sint64()?;
+                    self.WorldX = ::std::option::Option::Some(tmp);
+                },
+                4 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_sint64()?;
+                    self.WorldY = ::std::option::Option::Some(tmp);
+                },
+                5 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.InstanceId = ::std::option::Option::Some(tmp);
+                },
+                6 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
                     let tmp = is.read_uint64()?;
                     self.Facing = ::std::option::Option::Some(tmp);
                 },
@@ -1257,8 +1389,17 @@ impl ::protobuf::Message for Position {
         if let Some(v) = self.MapY {
             my_size += ::protobuf::rt::value_size(2, v, ::protobuf::wire_format::WireTypeVarint);
         }
+        if let Some(v) = self.WorldX {
+            my_size += ::protobuf::rt::value_varint_zigzag_size(3, v);
+        }
+        if let Some(v) = self.WorldY {
+            my_size += ::protobuf::rt::value_varint_zigzag_size(4, v);
+        }
+        if let Some(v) = self.InstanceId {
+            my_size += ::protobuf::rt::value_size(5, v, ::protobuf::wire_format::WireTypeVarint);
+        }
         if let Some(v) = self.Facing {
-            my_size += ::protobuf::rt::value_size(3, v, ::protobuf::wire_format::WireTypeVarint);
+            my_size += ::protobuf::rt::value_size(6, v, ::protobuf::wire_format::WireTypeVarint);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
@@ -1272,8 +1413,17 @@ impl ::protobuf::Message for Position {
         if let Some(v) = self.MapY {
             os.write_uint64(2, v)?;
         }
+        if let Some(v) = self.WorldX {
+            os.write_sint64(3, v)?;
+        }
+        if let Some(v) = self.WorldY {
+            os.write_sint64(4, v)?;
+        }
+        if let Some(v) = self.InstanceId {
+            os.write_uint64(5, v)?;
+        }
         if let Some(v) = self.Facing {
-            os.write_uint64(3, v)?;
+            os.write_uint64(6, v)?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
@@ -1323,6 +1473,21 @@ impl ::protobuf::Message for Position {
                 |m: &Position| { &m.MapY },
                 |m: &mut Position| { &mut m.MapY },
             ));
+            fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeSint64>(
+                "WorldX",
+                |m: &Position| { &m.WorldX },
+                |m: &mut Position| { &mut m.WorldX },
+            ));
+            fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeSint64>(
+                "WorldY",
+                |m: &Position| { &m.WorldY },
+                |m: &mut Position| { &mut m.WorldY },
+            ));
+            fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                "InstanceId",
+                |m: &Position| { &m.InstanceId },
+                |m: &mut Position| { &mut m.InstanceId },
+            ));
             fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
                 "Facing",
                 |m: &Position| { &m.Facing },
@@ -1346,6 +1511,9 @@ impl ::protobuf::Clear for Position {
     fn clear(&mut self) {
         self.MapX = ::std::option::Option::None;
         self.MapY = ::std::option::Option::None;
+        self.WorldX = ::std::option::Option::None;
+        self.WorldY = ::std::option::Option::None;
+        self.InstanceId = ::std::option::Option::None;
         self.Facing = ::std::option::Option::None;
         self.unknown_fields.clear();
     }
@@ -1500,26 +1668,29 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \n\x0fLakeshire.proto\"\x84\x01\n\x11StructuredMessage\x12'\n\x08BotStat\
     e\x18\x01\x20\x02(\x0e2\t.BotStateR\x08BotStateB\0\x12!\n\x06Player\x18\
     \x02\x20\x02(\x0b2\x07.PlayerR\x06PlayerB\0\x12!\n\x06Target\x18\x03\x20\
-    \x01(\x0b2\x07.TargetR\x06TargetB\0:\0\"V\n\x06Player\x12#\n\x08UnitInfo\
+    \x01(\x0b2\x07.TargetR\x06TargetB\0:\0\"n\n\x06Player\x12#\n\x08UnitInfo\
     \x18\x01\x20\x02(\x0b2\x05.UnitR\x08UnitInfoB\0\x12%\n\x07PosInfo\x18\
-    \x02\x20\x02(\x0b2\t.PositionR\x07PosInfoB\0:\0\"/\n\x06Target\x12#\n\
-    \x08UnitInfo\x18\x01\x20\x02(\x0b2\x05.UnitR\x08UnitInfoB\0:\0\"\xe2\x01\
-    \n\x04Unit\x12\x14\n\x04Name\x18\x01\x20\x02(\tR\x04NameB\0\x12\x16\n\
-    \x05Level\x18\x02\x20\x02(\x03R\x05LevelB\0\x12\x1e\n\x05Class\x18\x03\
-    \x20\x01(\x0e2\x06.ClassR\x05ClassB\0\x12&\n\rHealthCurrent\x18\x04\x20\
-    \x02(\x03R\rHealthCurrentB\0\x12\x1e\n\tHealthMax\x18\x05\x20\x02(\x03R\
-    \tHealthMaxB\0\x12$\n\x0cPowerCurrent\x18\x06\x20\x01(\x03R\x0cPowerCurr\
-    entB\0\x12\x1c\n\x08PowerMax\x18\x07\x20\x01(\x03R\x08PowerMaxB\0:\0\"R\
-    \n\x08Position\x12\x14\n\x04MapX\x18\x01\x20\x02(\x04R\x04MapXB\0\x12\
-    \x14\n\x04MapY\x18\x02\x20\x02(\x04R\x04MapYB\0\x12\x18\n\x06Facing\x18\
-    \x03\x20\x02(\x04R\x06FacingB\0:\0*3\n\x08BotState\x12\x0b\n\x07Stopped\
-    \x10\0\x12\x0b\n\x07Running\x10\x01\x12\x0b\n\x07DumpPos\x10\x02\x1a\0*\
-    \x99\x01\n\x05Class\x12\x08\n\x04None\x10\0\x12\x0b\n\x07Warrior\x10\x01\
-    \x12\x0b\n\x07Paladin\x10\x02\x12\n\n\x06Hunter\x10\x03\x12\t\n\x05Rogue\
-    \x10\x04\x12\n\n\x06Priest\x10\x05\x12\x0f\n\x0bDeathKnight\x10\x06\x12\
-    \n\n\x06Shaman\x10\x07\x12\x08\n\x04Mage\x10\x08\x12\x0b\n\x07Warlock\
-    \x10\t\x12\x08\n\x04Monk\x10\n\x12\t\n\x05Druid\x10\x0b\x1a\0B\0b\x06pro\
-    to2\
+    \x02\x20\x02(\x0b2\t.PositionR\x07PosInfoB\0\x12\x16\n\x05Flags\x18\x03\
+    \x20\x02(\x04R\x05FlagsB\0:\0\"/\n\x06Target\x12#\n\x08UnitInfo\x18\x01\
+    \x20\x02(\x0b2\x05.UnitR\x08UnitInfoB\0:\0\"\xe2\x01\n\x04Unit\x12\x14\n\
+    \x04Name\x18\x01\x20\x02(\tR\x04NameB\0\x12\x16\n\x05Level\x18\x02\x20\
+    \x02(\x03R\x05LevelB\0\x12\x1e\n\x05Class\x18\x03\x20\x01(\x0e2\x06.Clas\
+    sR\x05ClassB\0\x12&\n\rHealthCurrent\x18\x04\x20\x02(\x03R\rHealthCurren\
+    tB\0\x12\x1e\n\tHealthMax\x18\x05\x20\x02(\x03R\tHealthMaxB\0\x12$\n\x0c\
+    PowerCurrent\x18\x06\x20\x01(\x03R\x0cPowerCurrentB\0\x12\x1c\n\x08Power\
+    Max\x18\x07\x20\x01(\x03R\x08PowerMaxB\0:\0\"\xa8\x01\n\x08Position\x12\
+    \x14\n\x04MapX\x18\x01\x20\x02(\x04R\x04MapXB\0\x12\x14\n\x04MapY\x18\
+    \x02\x20\x02(\x04R\x04MapYB\0\x12\x18\n\x06WorldX\x18\x03\x20\x02(\x12R\
+    \x06WorldXB\0\x12\x18\n\x06WorldY\x18\x04\x20\x02(\x12R\x06WorldYB\0\x12\
+    \x20\n\nInstanceId\x18\x05\x20\x02(\x04R\nInstanceIdB\0\x12\x18\n\x06Fac\
+    ing\x18\x06\x20\x02(\x04R\x06FacingB\0:\0*3\n\x08BotState\x12\x0b\n\x07S\
+    topped\x10\0\x12\x0b\n\x07Running\x10\x01\x12\x0b\n\x07DumpPos\x10\x02\
+    \x1a\0*\x99\x01\n\x05Class\x12\x08\n\x04None\x10\0\x12\x0b\n\x07Warrior\
+    \x10\x01\x12\x0b\n\x07Paladin\x10\x02\x12\n\n\x06Hunter\x10\x03\x12\t\n\
+    \x05Rogue\x10\x04\x12\n\n\x06Priest\x10\x05\x12\x0f\n\x0bDeathKnight\x10\
+    \x06\x12\n\n\x06Shaman\x10\x07\x12\x08\n\x04Mage\x10\x08\x12\x0b\n\x07Wa\
+    rlock\x10\t\x12\x08\n\x04Monk\x10\n\x12\t\n\x05Druid\x10\x0b\x1a\0B\0b\
+    \x06proto2\
 ";
 
 static file_descriptor_proto_lazy: ::protobuf::rt::LazyV2<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::rt::LazyV2::INIT;
