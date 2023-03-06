@@ -16,18 +16,18 @@ local t = {
 		{ 7 },
 		{ 8 },
 		{ 9 },
-		["BotState"] = { 4 },
-		["Player"] = { 5 },
+		["GameState"] = { 3 },
+		["PlayerInfo"] = { 5 },
 		["Position"] = { 9 },
-		["Target"] = { 6 },
-		["StructuredMessage"] = { 3 },
+		["BotState"] = { 4 },
 		["Class"] = { 7 },
+		["TargetInfo"] = { 6 },
 		["Unit"] = { 8 },
 	},
 	-- Table: {3}
 	{
 		["fields"] = { 10 },
-		["name"] = "StructuredMessage",
+		["name"] = "GameState",
 		[".type"] = "message",
 	},
 	-- Table: {4}
@@ -39,13 +39,13 @@ local t = {
 	-- Table: {5}
 	{
 		["fields"] = { 12 },
-		["name"] = "Player",
+		["name"] = "PlayerInfo",
 		[".type"] = "message",
 	},
 	-- Table: {6}
 	{
 		["fields"] = { 13 },
-		["name"] = "Target",
+		["name"] = "TargetInfo",
 		[".type"] = "message",
 	},
 	-- Table: {7}
@@ -150,11 +150,13 @@ local t = {
 		{ 34 },
 		{ 35 },
 		{ 36 },
-		["WorldY"] = { 34 },
-		["Facing"] = { 36 },
-		["InstanceId"] = { 35 },
+		{ 37 },
+		["WorldY"] = { 35 },
+		["MapId"] = { 33 },
+		["InstanceId"] = { 36 },
 		["MapY"] = { 32 },
-		["WorldX"] = { 33 },
+		["Facing"] = { 37 },
+		["WorldX"] = { 34 },
 		["MapX"] = { 31 },
 	},
 	-- Table: {17}
@@ -167,7 +169,7 @@ local t = {
 	},
 	-- Table: {18}
 	{
-		["ftype"] = "Player",
+		["ftype"] = "PlayerInfo",
 		["name"] = "Player",
 		[".type"] = "field",
 		["rule"] = "required",
@@ -175,7 +177,7 @@ local t = {
 	},
 	-- Table: {19}
 	{
-		["ftype"] = "Target",
+		["ftype"] = "TargetInfo",
 		["name"] = "Target",
 		[".type"] = "field",
 		["rule"] = "optional",
@@ -287,8 +289,8 @@ local t = {
 	},
 	-- Table: {33}
 	{
-		["ftype"] = "sint64",
-		["name"] = "WorldX",
+		["ftype"] = "uint64",
+		["name"] = "MapId",
 		[".type"] = "field",
 		["rule"] = "required",
 		["tag"] = 3,
@@ -296,15 +298,15 @@ local t = {
 	-- Table: {34}
 	{
 		["ftype"] = "sint64",
-		["name"] = "WorldY",
+		["name"] = "WorldX",
 		[".type"] = "field",
 		["rule"] = "required",
 		["tag"] = 4,
 	},
 	-- Table: {35}
 	{
-		["ftype"] = "uint64",
-		["name"] = "InstanceId",
+		["ftype"] = "sint64",
+		["name"] = "WorldY",
 		[".type"] = "field",
 		["rule"] = "required",
 		["tag"] = 5,
@@ -312,10 +314,18 @@ local t = {
 	-- Table: {36}
 	{
 		["ftype"] = "uint64",
-		["name"] = "Facing",
+		["name"] = "InstanceId",
 		[".type"] = "field",
 		["rule"] = "required",
 		["tag"] = 6,
+	},
+	-- Table: {37}
+	{
+		["ftype"] = "uint64",
+		["name"] = "Facing",
+		[".type"] = "field",
+		["rule"] = "required",
+		["tag"] = 7,
 	},
 }
 local function loadast()

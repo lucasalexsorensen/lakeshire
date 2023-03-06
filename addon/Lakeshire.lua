@@ -1,7 +1,7 @@
 local ADDONNAME, ls = ...
 
 local luapb = ls.luapb
-local proto = luapb.load_proto_ast(ls.pbast).StructuredMessage
+local proto = luapb.load_proto_ast(ls.pbast).GameState
 ls.testproto = proto()
 
 ls.commands = {
@@ -117,8 +117,9 @@ function ls:UpdatePosInfo()
 	ls.testproto.Player.PosInfo = {
 		MapX = math.ceil(mapx * 1e14),
 		MapY = math.ceil(mapy * 1e14),
-		WorldX = math.ceil(x * 1e3),
-		WorldY = math.ceil(y * 1e3),
+		MapId = map,
+		WorldX = math.ceil(x * 1e5),
+		WorldY = math.ceil(y * 1e5),
 		InstanceId = instanceid,
 		Facing = rot * 1e10,
 	}
