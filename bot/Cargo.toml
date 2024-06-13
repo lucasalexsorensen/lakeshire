@@ -1,0 +1,23 @@
+[package]
+name = "lakeshire"
+version = "0.1.0"
+edition = "2021"
+build = "src/build.rs"
+
+
+[[bin]]
+name = "lakeshire-cli"
+path = "src/cli/main.rs"
+
+[dependencies]
+protobuf = { version = "2", features = ["with-bytes"] }
+scrap = "0.5"
+enigo = "0.0.14"
+repng = "0.2.2"
+csv = "1.1"
+clap = { version = "4.1.6", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+
+
+[build-dependencies]
+protobuf-codegen-pure = "2.17.0"
