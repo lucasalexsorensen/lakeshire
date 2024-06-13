@@ -1,27 +1,30 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotateLeft, faSave, faArrowsRotate, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { ZoneInfo } from "../types/zone";
 import CanvasDraw from "react-canvas-draw";
-import { Store } from "tauri-plugin-store-api";
-import { ZoneInfo } from "../types/Zone";
+import { BaseDirectory, writeTextFile, readTextFile, createDir } from "@tauri-apps/api/fs";
 
 
 type EditorMapProps = {
     currentZoneInfo: ZoneInfo;
-    handleSave: (x: any) => void;
+    // handleSave: (x: any) => void;
 }
 
 type EditorMapState = {
     savedDrawDataString: string
 }
 
-const store = new Store(".settings.dat");
-
 export default class EditorMap extends React.Component<EditorMapProps> {
     canvasRef: any;
 
-    handleSave () {
-        return this.props.handleSave(this.canvasRef.getSaveData());
+    async handleSave () {
+        const saveData = this.canvasRef.getSaveData()
+        await writeTextFile(
+            `zone-data-${this.props.currentZoneInfo.id}.json`,
+            saveData,
+            { dir: BaseDirectory.AppData }
+        );
     }
 
     handleClear ()  {
@@ -36,18 +39,36 @@ export default class EditorMap extends React.Component<EditorMapProps> {
         this.canvasRef.undo();
     }
 
+    async componentDidUpdate(prevProps: EditorMapProps) {
+        const { currentZoneInfo } = this.props;
+        if (prevProps.currentZoneInfo.name !== currentZoneInfo.name) {
+            await this.updateCanvasFromStore(currentZoneInfo);
+        }
+    }
+
     async componentDidMount () {
         const { currentZoneInfo } = this.props;
-        const savedDrawDataString = await store.get(`draw-data-${currentZoneInfo.name}`);
-        if (savedDrawDataString) {
-            this.canvasRef.loadSaveData(JSON.stringify(savedDrawDataString), false);
+        await this.updateCanvasFromStore(currentZoneInfo);
+    }
+
+    async updateCanvasFromStore (zoneInfo: ZoneInfo) {
+        try {
+            const savedDrawDataString = await readTextFile(
+                `zone-data-${zoneInfo.id}.json`,
+                { dir: BaseDirectory.AppData }
+            );
+
+            this.canvasRef.loadSaveData(savedDrawDataString, false);
+        } catch (e) {
+            console.error(e)
+            this.canvasRef.clear()
         }
     }
 
 
     render () {
         const { currentZoneInfo } = this.props;
-        const imagePath = `/zones/${currentZoneInfo.imageName ?? currentZoneInfo.name}.jpg`;
+        const imagePath = `/zone_images/${currentZoneInfo.id}.png`;
 
         return <React.Fragment>
             <div className="flex py-2 mb-3 px-3 w-1/2 bg-slate-700 space-x-4 rounded-lg justify-around">

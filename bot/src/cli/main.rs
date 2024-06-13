@@ -1,16 +1,27 @@
 use lakeshire::core::screen::capture;
 use capture::{GameGrabber, GrabberError, ONE_FRAME};
 use lakeshire::core::util::print_all_info;
-use scrap::{Capturer, Display};
 use std::thread;
 use std::time::Duration;
+use clap::Parser;
+use lakeshire::core::dbc::DbcHandler;
+
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    /// Which display to capture
+    #[arg(short, long, default_value_t = 0)]
+    display: usize,
+ }
+
+
+
 
 fn main () {
-    let display = Display::primary().unwrap();
-    let mut capturer = Capturer::new(display).expect("Couldn't begin capture.");
+    let dbc_handler = DbcHandler::new();
 
-    let mut grabber = GameGrabber::new(&mut capturer);
-
+    let args = Args::parse();
+    let mut grabber = GameGrabber::new(args.display);
     loop {
         let msg = match grabber.get_frame() {
             Ok(buffer) => buffer,
@@ -35,14 +46,5 @@ fn main () {
 
         print_all_info(&msg);
 
-
-         // BGRA
-        // println!(
-        //     "B={}, G={}, R={}, A={}",
-        //     buffer[bottomleft_offset],
-        //     buffer[bottomleft_offset+1],
-        //     buffer[bottomleft_offset+2],
-        //     buffer[bottomleft_offset+3],
-        // );
     }
 }

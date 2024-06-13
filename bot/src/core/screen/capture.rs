@@ -1,14 +1,14 @@
 use std::{time::Duration};
 use protobuf::{Message};
-use scrap::{Capturer, Frame};
+use scrap::{Capturer, Frame, Display};
 use std::io::ErrorKind::WouldBlock;
 use crate::core::screen::pixels;
 use crate::core::protos::Lakeshire;
 
 
 pub const ONE_FRAME: Duration = Duration::new(0, 16666667);
-pub struct GameGrabber<'a> {
-    capturer: &'a mut Capturer,
+pub struct GameGrabber {
+    capturer: Capturer,
     width: usize,
     height: usize
 }
@@ -21,18 +21,26 @@ pub enum GrabberError {
     Other
 }
 
-impl<'a> GameGrabber<'a> {
-    pub fn new(capturer: &'a mut Capturer) -> GameGrabber {
-        let width = capturer.width();
-        let height = capturer.height();
-        GameGrabber {
-            capturer: capturer,
-            width,
-            height
-        }
+impl GameGrabber {
+    pub fn new(display_index: usize) -> GameGrabber {
+        let mut result = GameGrabber {
+            capturer: GameGrabber::get_capturer(display_index),
+            width: 0,
+            height: 0
+        };
+        result.height = result.capturer.height();
+        result.width = result.capturer.width();
+        return result;
     }
 
-    fn parse_frame(width: usize, buffer: &Frame) -> Result<Lakeshire::StructuredMessage, GrabberError> {
+    fn get_capturer (display_index: usize) -> Capturer {
+        let mut displays = Display::all().unwrap();
+        let display = displays.remove(display_index);
+        let capturer = Capturer::new(display).expect("Couldn't begin capture.");
+        return capturer;
+    }
+
+    fn parse_frame(buffer: &Frame, width: usize) -> Result<Lakeshire::GameState, GrabberError> {
         // Frame is a [u8] of packed BGRA pixels
         // for 1440p, this is:
         // 2560 * 1440 * 4 = 14745600 bytes
@@ -98,7 +106,7 @@ impl<'a> GameGrabber<'a> {
         }
     }
 
-    pub fn get_frame(&mut self) -> Result<Lakeshire::StructuredMessage, GrabberError> {
+    pub fn get_frame(&mut self) -> Result<Lakeshire::GameState, GrabberError> {
         let buffer_result = match self.capturer.frame() {
             Ok(buffer) => Ok(buffer),
             Err(error) => {
@@ -114,6 +122,6 @@ impl<'a> GameGrabber<'a> {
         }
         let buffer = buffer_result.unwrap();
 
-        GameGrabber::parse_frame(self.width, &buffer)
+        GameGrabber::parse_frame(&buffer, self.width)
     }
 }

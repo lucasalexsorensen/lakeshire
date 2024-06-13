@@ -106,7 +106,8 @@ function ls:UpdatePosInfo()
 	local map = C_Map.GetBestMapForUnit("player")
 	local position = C_Map.GetPlayerMapPosition(map, "player")
 	local mapx, mapy = position:GetXY()
-	local y, x, _z, instanceid = UnitPosition("player")
+	local instanceid, world_position = C_Map.GetWorldPosFromMapPos(map, position)
+	local y, x = world_position:GetXY()
 	if x == nil or y == nil then
 		x = 0
 		y = 0

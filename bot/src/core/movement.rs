@@ -12,7 +12,7 @@ pub const MOVE_DURATION: Duration = Duration::from_millis(10);
 pub const RAD: f64 = 2. * std::f64::consts::PI;
 
 
-pub fn mv (enigo: &mut Enigo, msg: &StructuredMessage, prev_keys: &mut HashSet<LsKey>, path: &(f64, f64)) -> bool {
+pub fn mv (enigo: &mut Enigo, msg: &GameState, prev_keys: &mut HashSet<LsKey>, path: &(f64, f64)) -> bool {
     // first, we compute which keys to press based on current state
     let mut new_keys = <HashSet<LsKey>>::new();
     let mut result = false;

@@ -297,7 +297,7 @@ local t = {
 	},
 	-- Table: {34}
 	{
-		["ftype"] = "sint64",
+		["ftype"] = "int64",
 		["name"] = "WorldX",
 		[".type"] = "field",
 		["rule"] = "required",
@@ -305,7 +305,7 @@ local t = {
 	},
 	-- Table: {35}
 	{
-		["ftype"] = "sint64",
+		["ftype"] = "int64",
 		["name"] = "WorldY",
 		[".type"] = "field",
 		["rule"] = "required",

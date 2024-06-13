@@ -24,24 +24,24 @@
 // const _PROTOBUF_VERSION_CHECK: () = ::protobuf::VERSION_2_28_0;
 
 #[derive(PartialEq,Clone,Default)]
-pub struct StructuredMessage {
+pub struct GameState {
     // message fields
     BotState: ::std::option::Option<BotState>,
-    pub Player: ::protobuf::SingularPtrField<Player>,
-    pub Target: ::protobuf::SingularPtrField<Target>,
+    pub Player: ::protobuf::SingularPtrField<PlayerInfo>,
+    pub Target: ::protobuf::SingularPtrField<TargetInfo>,
     // special fields
     pub unknown_fields: ::protobuf::UnknownFields,
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a StructuredMessage {
-    fn default() -> &'a StructuredMessage {
-        <StructuredMessage as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a GameState {
+    fn default() -> &'a GameState {
+        <GameState as ::protobuf::Message>::default_instance()
     }
 }
 
-impl StructuredMessage {
-    pub fn new() -> StructuredMessage {
+impl GameState {
+    pub fn new() -> GameState {
         ::std::default::Default::default()
     }
 
@@ -64,11 +64,11 @@ impl StructuredMessage {
         self.BotState = ::std::option::Option::Some(v);
     }
 
-    // required .Player Player = 2;
+    // required .PlayerInfo Player = 2;
 
 
-    pub fn get_Player(&self) -> &Player {
-        self.Player.as_ref().unwrap_or_else(|| <Player as ::protobuf::Message>::default_instance())
+    pub fn get_Player(&self) -> &PlayerInfo {
+        self.Player.as_ref().unwrap_or_else(|| <PlayerInfo as ::protobuf::Message>::default_instance())
     }
     pub fn clear_Player(&mut self) {
         self.Player.clear();
@@ -79,13 +79,13 @@ impl StructuredMessage {
     }
 
     // Param is passed by value, moved
-    pub fn set_Player(&mut self, v: Player) {
+    pub fn set_Player(&mut self, v: PlayerInfo) {
         self.Player = ::protobuf::SingularPtrField::some(v);
     }
 
     // Mutable pointer to the field.
     // If field is not initialized, it is initialized with default value first.
-    pub fn mut_Player(&mut self) -> &mut Player {
+    pub fn mut_Player(&mut self) -> &mut PlayerInfo {
         if self.Player.is_none() {
             self.Player.set_default();
         }
@@ -93,15 +93,15 @@ impl StructuredMessage {
     }
 
     // Take field
-    pub fn take_Player(&mut self) -> Player {
-        self.Player.take().unwrap_or_else(|| Player::new())
+    pub fn take_Player(&mut self) -> PlayerInfo {
+        self.Player.take().unwrap_or_else(|| PlayerInfo::new())
     }
 
-    // optional .Target Target = 3;
+    // optional .TargetInfo Target = 3;
 
 
-    pub fn get_Target(&self) -> &Target {
-        self.Target.as_ref().unwrap_or_else(|| <Target as ::protobuf::Message>::default_instance())
+    pub fn get_Target(&self) -> &TargetInfo {
+        self.Target.as_ref().unwrap_or_else(|| <TargetInfo as ::protobuf::Message>::default_instance())
     }
     pub fn clear_Target(&mut self) {
         self.Target.clear();
@@ -112,13 +112,13 @@ impl StructuredMessage {
     }
 
     // Param is passed by value, moved
-    pub fn set_Target(&mut self, v: Target) {
+    pub fn set_Target(&mut self, v: TargetInfo) {
         self.Target = ::protobuf::SingularPtrField::some(v);
     }
 
     // Mutable pointer to the field.
     // If field is not initialized, it is initialized with default value first.
-    pub fn mut_Target(&mut self) -> &mut Target {
+    pub fn mut_Target(&mut self) -> &mut TargetInfo {
         if self.Target.is_none() {
             self.Target.set_default();
         }
@@ -126,12 +126,12 @@ impl StructuredMessage {
     }
 
     // Take field
-    pub fn take_Target(&mut self) -> Target {
-        self.Target.take().unwrap_or_else(|| Target::new())
+    pub fn take_Target(&mut self) -> TargetInfo {
+        self.Target.take().unwrap_or_else(|| TargetInfo::new())
     }
 }
 
-impl ::protobuf::Message for StructuredMessage {
+impl ::protobuf::Message for GameState {
     fn is_initialized(&self) -> bool {
         if self.BotState.is_none() {
             return false;
@@ -237,8 +237,8 @@ impl ::protobuf::Message for StructuredMessage {
         Self::descriptor_static()
     }
 
-    fn new() -> StructuredMessage {
-        StructuredMessage::new()
+    fn new() -> GameState {
+        GameState::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -247,34 +247,34 @@ impl ::protobuf::Message for StructuredMessage {
             let mut fields = ::std::vec::Vec::new();
             fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeEnum<BotState>>(
                 "BotState",
-                |m: &StructuredMessage| { &m.BotState },
-                |m: &mut StructuredMessage| { &mut m.BotState },
+                |m: &GameState| { &m.BotState },
+                |m: &mut GameState| { &mut m.BotState },
             ));
-            fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Player>>(
+            fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<PlayerInfo>>(
                 "Player",
-                |m: &StructuredMessage| { &m.Player },
-                |m: &mut StructuredMessage| { &mut m.Player },
+                |m: &GameState| { &m.Player },
+                |m: &mut GameState| { &mut m.Player },
             ));
-            fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Target>>(
+            fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<TargetInfo>>(
                 "Target",
-                |m: &StructuredMessage| { &m.Target },
-                |m: &mut StructuredMessage| { &mut m.Target },
+                |m: &GameState| { &m.Target },
+                |m: &mut GameState| { &mut m.Target },
             ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<StructuredMessage>(
-                "StructuredMessage",
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<GameState>(
+                "GameState",
                 fields,
                 file_descriptor_proto()
             )
         })
     }
 
-    fn default_instance() -> &'static StructuredMessage {
-        static instance: ::protobuf::rt::LazyV2<StructuredMessage> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(StructuredMessage::new)
+    fn default_instance() -> &'static GameState {
+        static instance: ::protobuf::rt::LazyV2<GameState> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(GameState::new)
     }
 }
 
-impl ::protobuf::Clear for StructuredMessage {
+impl ::protobuf::Clear for GameState {
     fn clear(&mut self) {
         self.BotState = ::std::option::Option::None;
         self.Player.clear();
@@ -283,20 +283,20 @@ impl ::protobuf::Clear for StructuredMessage {
     }
 }
 
-impl ::std::fmt::Debug for StructuredMessage {
+impl ::std::fmt::Debug for GameState {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for StructuredMessage {
+impl ::protobuf::reflect::ProtobufValue for GameState {
     fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
         ::protobuf::reflect::ReflectValueRef::Message(self)
     }
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct Player {
+pub struct PlayerInfo {
     // message fields
     pub UnitInfo: ::protobuf::SingularPtrField<Unit>,
     pub PosInfo: ::protobuf::SingularPtrField<Position>,
@@ -306,14 +306,14 @@ pub struct Player {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Player {
-    fn default() -> &'a Player {
-        <Player as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a PlayerInfo {
+    fn default() -> &'a PlayerInfo {
+        <PlayerInfo as ::protobuf::Message>::default_instance()
     }
 }
 
-impl Player {
-    pub fn new() -> Player {
+impl PlayerInfo {
+    pub fn new() -> PlayerInfo {
         ::std::default::Default::default()
     }
 
@@ -403,7 +403,7 @@ impl Player {
     }
 }
 
-impl ::protobuf::Message for Player {
+impl ::protobuf::Message for PlayerInfo {
     fn is_initialized(&self) -> bool {
         if self.UnitInfo.is_none() {
             return false;
@@ -516,8 +516,8 @@ impl ::protobuf::Message for Player {
         Self::descriptor_static()
     }
 
-    fn new() -> Player {
-        Player::new()
+    fn new() -> PlayerInfo {
+        PlayerInfo::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -526,34 +526,34 @@ impl ::protobuf::Message for Player {
             let mut fields = ::std::vec::Vec::new();
             fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Unit>>(
                 "UnitInfo",
-                |m: &Player| { &m.UnitInfo },
-                |m: &mut Player| { &mut m.UnitInfo },
+                |m: &PlayerInfo| { &m.UnitInfo },
+                |m: &mut PlayerInfo| { &mut m.UnitInfo },
             ));
             fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Position>>(
                 "PosInfo",
-                |m: &Player| { &m.PosInfo },
-                |m: &mut Player| { &mut m.PosInfo },
+                |m: &PlayerInfo| { &m.PosInfo },
+                |m: &mut PlayerInfo| { &mut m.PosInfo },
             ));
             fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
                 "Flags",
-                |m: &Player| { &m.Flags },
-                |m: &mut Player| { &mut m.Flags },
+                |m: &PlayerInfo| { &m.Flags },
+                |m: &mut PlayerInfo| { &mut m.Flags },
             ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<Player>(
-                "Player",
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<PlayerInfo>(
+                "PlayerInfo",
                 fields,
                 file_descriptor_proto()
             )
         })
     }
 
-    fn default_instance() -> &'static Player {
-        static instance: ::protobuf::rt::LazyV2<Player> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(Player::new)
+    fn default_instance() -> &'static PlayerInfo {
+        static instance: ::protobuf::rt::LazyV2<PlayerInfo> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(PlayerInfo::new)
     }
 }
 
-impl ::protobuf::Clear for Player {
+impl ::protobuf::Clear for PlayerInfo {
     fn clear(&mut self) {
         self.UnitInfo.clear();
         self.PosInfo.clear();
@@ -562,20 +562,20 @@ impl ::protobuf::Clear for Player {
     }
 }
 
-impl ::std::fmt::Debug for Player {
+impl ::std::fmt::Debug for PlayerInfo {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for Player {
+impl ::protobuf::reflect::ProtobufValue for PlayerInfo {
     fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
         ::protobuf::reflect::ReflectValueRef::Message(self)
     }
 }
 
 #[derive(PartialEq,Clone,Default)]
-pub struct Target {
+pub struct TargetInfo {
     // message fields
     pub UnitInfo: ::protobuf::SingularPtrField<Unit>,
     // special fields
@@ -583,14 +583,14 @@ pub struct Target {
     pub cached_size: ::protobuf::CachedSize,
 }
 
-impl<'a> ::std::default::Default for &'a Target {
-    fn default() -> &'a Target {
-        <Target as ::protobuf::Message>::default_instance()
+impl<'a> ::std::default::Default for &'a TargetInfo {
+    fn default() -> &'a TargetInfo {
+        <TargetInfo as ::protobuf::Message>::default_instance()
     }
 }
 
-impl Target {
-    pub fn new() -> Target {
+impl TargetInfo {
+    pub fn new() -> TargetInfo {
         ::std::default::Default::default()
     }
 
@@ -628,7 +628,7 @@ impl Target {
     }
 }
 
-impl ::protobuf::Message for Target {
+impl ::protobuf::Message for TargetInfo {
     fn is_initialized(&self) -> bool {
         if self.UnitInfo.is_none() {
             return false;
@@ -705,8 +705,8 @@ impl ::protobuf::Message for Target {
         Self::descriptor_static()
     }
 
-    fn new() -> Target {
-        Target::new()
+    fn new() -> TargetInfo {
+        TargetInfo::new()
     }
 
     fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
@@ -715,37 +715,37 @@ impl ::protobuf::Message for Target {
             let mut fields = ::std::vec::Vec::new();
             fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<Unit>>(
                 "UnitInfo",
-                |m: &Target| { &m.UnitInfo },
-                |m: &mut Target| { &mut m.UnitInfo },
+                |m: &TargetInfo| { &m.UnitInfo },
+                |m: &mut TargetInfo| { &mut m.UnitInfo },
             ));
-            ::protobuf::reflect::MessageDescriptor::new_pb_name::<Target>(
-                "Target",
+            ::protobuf::reflect::MessageDescriptor::new_pb_name::<TargetInfo>(
+                "TargetInfo",
                 fields,
                 file_descriptor_proto()
             )
         })
     }
 
-    fn default_instance() -> &'static Target {
-        static instance: ::protobuf::rt::LazyV2<Target> = ::protobuf::rt::LazyV2::INIT;
-        instance.get(Target::new)
+    fn default_instance() -> &'static TargetInfo {
+        static instance: ::protobuf::rt::LazyV2<TargetInfo> = ::protobuf::rt::LazyV2::INIT;
+        instance.get(TargetInfo::new)
     }
 }
 
-impl ::protobuf::Clear for Target {
+impl ::protobuf::Clear for TargetInfo {
     fn clear(&mut self) {
         self.UnitInfo.clear();
         self.unknown_fields.clear();
     }
 }
 
-impl ::std::fmt::Debug for Target {
+impl ::std::fmt::Debug for TargetInfo {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         ::protobuf::text_format::fmt(self, f)
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for Target {
+impl ::protobuf::reflect::ProtobufValue for TargetInfo {
     fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
         ::protobuf::reflect::ReflectValueRef::Message(self)
     }
@@ -1167,6 +1167,7 @@ pub struct Position {
     // message fields
     MapX: ::std::option::Option<u64>,
     MapY: ::std::option::Option<u64>,
+    MapId: ::std::option::Option<u64>,
     WorldX: ::std::option::Option<i64>,
     WorldY: ::std::option::Option<i64>,
     InstanceId: ::std::option::Option<u64>,
@@ -1225,7 +1226,26 @@ impl Position {
         self.MapY = ::std::option::Option::Some(v);
     }
 
-    // required sint64 WorldX = 3;
+    // required uint64 MapId = 3;
+
+
+    pub fn get_MapId(&self) -> u64 {
+        self.MapId.unwrap_or(0)
+    }
+    pub fn clear_MapId(&mut self) {
+        self.MapId = ::std::option::Option::None;
+    }
+
+    pub fn has_MapId(&self) -> bool {
+        self.MapId.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_MapId(&mut self, v: u64) {
+        self.MapId = ::std::option::Option::Some(v);
+    }
+
+    // required int64 WorldX = 4;
 
 
     pub fn get_WorldX(&self) -> i64 {
@@ -1244,7 +1264,7 @@ impl Position {
         self.WorldX = ::std::option::Option::Some(v);
     }
 
-    // required sint64 WorldY = 4;
+    // required int64 WorldY = 5;
 
 
     pub fn get_WorldY(&self) -> i64 {
@@ -1263,7 +1283,7 @@ impl Position {
         self.WorldY = ::std::option::Option::Some(v);
     }
 
-    // required uint64 InstanceId = 5;
+    // required uint64 InstanceId = 6;
 
 
     pub fn get_InstanceId(&self) -> u64 {
@@ -1282,7 +1302,7 @@ impl Position {
         self.InstanceId = ::std::option::Option::Some(v);
     }
 
-    // required uint64 Facing = 6;
+    // required uint64 Facing = 7;
 
 
     pub fn get_Facing(&self) -> u64 {
@@ -1308,6 +1328,9 @@ impl ::protobuf::Message for Position {
             return false;
         }
         if self.MapY.is_none() {
+            return false;
+        }
+        if self.MapId.is_none() {
             return false;
         }
         if self.WorldX.is_none() {
@@ -1347,24 +1370,31 @@ impl ::protobuf::Message for Position {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
-                    let tmp = is.read_sint64()?;
-                    self.WorldX = ::std::option::Option::Some(tmp);
+                    let tmp = is.read_uint64()?;
+                    self.MapId = ::std::option::Option::Some(tmp);
                 },
                 4 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
-                    let tmp = is.read_sint64()?;
-                    self.WorldY = ::std::option::Option::Some(tmp);
+                    let tmp = is.read_int64()?;
+                    self.WorldX = ::std::option::Option::Some(tmp);
                 },
                 5 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_int64()?;
+                    self.WorldY = ::std::option::Option::Some(tmp);
+                },
+                6 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
                     let tmp = is.read_uint64()?;
                     self.InstanceId = ::std::option::Option::Some(tmp);
                 },
-                6 => {
+                7 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
@@ -1389,17 +1419,20 @@ impl ::protobuf::Message for Position {
         if let Some(v) = self.MapY {
             my_size += ::protobuf::rt::value_size(2, v, ::protobuf::wire_format::WireTypeVarint);
         }
+        if let Some(v) = self.MapId {
+            my_size += ::protobuf::rt::value_size(3, v, ::protobuf::wire_format::WireTypeVarint);
+        }
         if let Some(v) = self.WorldX {
-            my_size += ::protobuf::rt::value_varint_zigzag_size(3, v);
+            my_size += ::protobuf::rt::value_size(4, v, ::protobuf::wire_format::WireTypeVarint);
         }
         if let Some(v) = self.WorldY {
-            my_size += ::protobuf::rt::value_varint_zigzag_size(4, v);
-        }
-        if let Some(v) = self.InstanceId {
             my_size += ::protobuf::rt::value_size(5, v, ::protobuf::wire_format::WireTypeVarint);
         }
-        if let Some(v) = self.Facing {
+        if let Some(v) = self.InstanceId {
             my_size += ::protobuf::rt::value_size(6, v, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if let Some(v) = self.Facing {
+            my_size += ::protobuf::rt::value_size(7, v, ::protobuf::wire_format::WireTypeVarint);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
@@ -1413,17 +1446,20 @@ impl ::protobuf::Message for Position {
         if let Some(v) = self.MapY {
             os.write_uint64(2, v)?;
         }
+        if let Some(v) = self.MapId {
+            os.write_uint64(3, v)?;
+        }
         if let Some(v) = self.WorldX {
-            os.write_sint64(3, v)?;
+            os.write_int64(4, v)?;
         }
         if let Some(v) = self.WorldY {
-            os.write_sint64(4, v)?;
+            os.write_int64(5, v)?;
         }
         if let Some(v) = self.InstanceId {
-            os.write_uint64(5, v)?;
+            os.write_uint64(6, v)?;
         }
         if let Some(v) = self.Facing {
-            os.write_uint64(6, v)?;
+            os.write_uint64(7, v)?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
@@ -1473,12 +1509,17 @@ impl ::protobuf::Message for Position {
                 |m: &Position| { &m.MapY },
                 |m: &mut Position| { &mut m.MapY },
             ));
-            fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeSint64>(
+            fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                "MapId",
+                |m: &Position| { &m.MapId },
+                |m: &mut Position| { &mut m.MapId },
+            ));
+            fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
                 "WorldX",
                 |m: &Position| { &m.WorldX },
                 |m: &mut Position| { &mut m.WorldX },
             ));
-            fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeSint64>(
+            fields.push(::protobuf::reflect::accessor::make_option_accessor::<_, ::protobuf::types::ProtobufTypeInt64>(
                 "WorldY",
                 |m: &Position| { &m.WorldY },
                 |m: &mut Position| { &mut m.WorldY },
@@ -1511,6 +1552,7 @@ impl ::protobuf::Clear for Position {
     fn clear(&mut self) {
         self.MapX = ::std::option::Option::None;
         self.MapY = ::std::option::Option::None;
+        self.MapId = ::std::option::Option::None;
         self.WorldX = ::std::option::Option::None;
         self.WorldY = ::std::option::Option::None;
         self.InstanceId = ::std::option::Option::None;
@@ -1665,32 +1707,32 @@ impl ::protobuf::reflect::ProtobufValue for Class {
 }
 
 static file_descriptor_proto_data: &'static [u8] = b"\
-    \n\x0fLakeshire.proto\"\x84\x01\n\x11StructuredMessage\x12'\n\x08BotStat\
-    e\x18\x01\x20\x02(\x0e2\t.BotStateR\x08BotStateB\0\x12!\n\x06Player\x18\
-    \x02\x20\x02(\x0b2\x07.PlayerR\x06PlayerB\0\x12!\n\x06Target\x18\x03\x20\
-    \x01(\x0b2\x07.TargetR\x06TargetB\0:\0\"n\n\x06Player\x12#\n\x08UnitInfo\
-    \x18\x01\x20\x02(\x0b2\x05.UnitR\x08UnitInfoB\0\x12%\n\x07PosInfo\x18\
+    \n\x0fLakeshire.proto\"\x84\x01\n\tGameState\x12'\n\x08BotState\x18\x01\
+    \x20\x02(\x0e2\t.BotStateR\x08BotStateB\0\x12%\n\x06Player\x18\x02\x20\
+    \x02(\x0b2\x0b.PlayerInfoR\x06PlayerB\0\x12%\n\x06Target\x18\x03\x20\x01\
+    (\x0b2\x0b.TargetInfoR\x06TargetB\0:\0\"r\n\nPlayerInfo\x12#\n\x08UnitIn\
+    fo\x18\x01\x20\x02(\x0b2\x05.UnitR\x08UnitInfoB\0\x12%\n\x07PosInfo\x18\
     \x02\x20\x02(\x0b2\t.PositionR\x07PosInfoB\0\x12\x16\n\x05Flags\x18\x03\
-    \x20\x02(\x04R\x05FlagsB\0:\0\"/\n\x06Target\x12#\n\x08UnitInfo\x18\x01\
-    \x20\x02(\x0b2\x05.UnitR\x08UnitInfoB\0:\0\"\xe2\x01\n\x04Unit\x12\x14\n\
-    \x04Name\x18\x01\x20\x02(\tR\x04NameB\0\x12\x16\n\x05Level\x18\x02\x20\
-    \x02(\x03R\x05LevelB\0\x12\x1e\n\x05Class\x18\x03\x20\x01(\x0e2\x06.Clas\
-    sR\x05ClassB\0\x12&\n\rHealthCurrent\x18\x04\x20\x02(\x03R\rHealthCurren\
-    tB\0\x12\x1e\n\tHealthMax\x18\x05\x20\x02(\x03R\tHealthMaxB\0\x12$\n\x0c\
-    PowerCurrent\x18\x06\x20\x01(\x03R\x0cPowerCurrentB\0\x12\x1c\n\x08Power\
-    Max\x18\x07\x20\x01(\x03R\x08PowerMaxB\0:\0\"\xa8\x01\n\x08Position\x12\
-    \x14\n\x04MapX\x18\x01\x20\x02(\x04R\x04MapXB\0\x12\x14\n\x04MapY\x18\
-    \x02\x20\x02(\x04R\x04MapYB\0\x12\x18\n\x06WorldX\x18\x03\x20\x02(\x12R\
-    \x06WorldXB\0\x12\x18\n\x06WorldY\x18\x04\x20\x02(\x12R\x06WorldYB\0\x12\
-    \x20\n\nInstanceId\x18\x05\x20\x02(\x04R\nInstanceIdB\0\x12\x18\n\x06Fac\
-    ing\x18\x06\x20\x02(\x04R\x06FacingB\0:\0*3\n\x08BotState\x12\x0b\n\x07S\
-    topped\x10\0\x12\x0b\n\x07Running\x10\x01\x12\x0b\n\x07DumpPos\x10\x02\
-    \x1a\0*\x99\x01\n\x05Class\x12\x08\n\x04None\x10\0\x12\x0b\n\x07Warrior\
-    \x10\x01\x12\x0b\n\x07Paladin\x10\x02\x12\n\n\x06Hunter\x10\x03\x12\t\n\
-    \x05Rogue\x10\x04\x12\n\n\x06Priest\x10\x05\x12\x0f\n\x0bDeathKnight\x10\
-    \x06\x12\n\n\x06Shaman\x10\x07\x12\x08\n\x04Mage\x10\x08\x12\x0b\n\x07Wa\
-    rlock\x10\t\x12\x08\n\x04Monk\x10\n\x12\t\n\x05Druid\x10\x0b\x1a\0B\0b\
-    \x06proto2\
+    \x20\x02(\x04R\x05FlagsB\0:\0\"3\n\nTargetInfo\x12#\n\x08UnitInfo\x18\
+    \x01\x20\x02(\x0b2\x05.UnitR\x08UnitInfoB\0:\0\"\xe2\x01\n\x04Unit\x12\
+    \x14\n\x04Name\x18\x01\x20\x02(\tR\x04NameB\0\x12\x16\n\x05Level\x18\x02\
+    \x20\x02(\x03R\x05LevelB\0\x12\x1e\n\x05Class\x18\x03\x20\x01(\x0e2\x06.\
+    ClassR\x05ClassB\0\x12&\n\rHealthCurrent\x18\x04\x20\x02(\x03R\rHealthCu\
+    rrentB\0\x12\x1e\n\tHealthMax\x18\x05\x20\x02(\x03R\tHealthMaxB\0\x12$\n\
+    \x0cPowerCurrent\x18\x06\x20\x01(\x03R\x0cPowerCurrentB\0\x12\x1c\n\x08P\
+    owerMax\x18\x07\x20\x01(\x03R\x08PowerMaxB\0:\0\"\xc0\x01\n\x08Position\
+    \x12\x14\n\x04MapX\x18\x01\x20\x02(\x04R\x04MapXB\0\x12\x14\n\x04MapY\
+    \x18\x02\x20\x02(\x04R\x04MapYB\0\x12\x16\n\x05MapId\x18\x03\x20\x02(\
+    \x04R\x05MapIdB\0\x12\x18\n\x06WorldX\x18\x04\x20\x02(\x03R\x06WorldXB\0\
+    \x12\x18\n\x06WorldY\x18\x05\x20\x02(\x03R\x06WorldYB\0\x12\x20\n\nInsta\
+    nceId\x18\x06\x20\x02(\x04R\nInstanceIdB\0\x12\x18\n\x06Facing\x18\x07\
+    \x20\x02(\x04R\x06FacingB\0:\0*3\n\x08BotState\x12\x0b\n\x07Stopped\x10\
+    \0\x12\x0b\n\x07Running\x10\x01\x12\x0b\n\x07DumpPos\x10\x02\x1a\0*\x99\
+    \x01\n\x05Class\x12\x08\n\x04None\x10\0\x12\x0b\n\x07Warrior\x10\x01\x12\
+    \x0b\n\x07Paladin\x10\x02\x12\n\n\x06Hunter\x10\x03\x12\t\n\x05Rogue\x10\
+    \x04\x12\n\n\x06Priest\x10\x05\x12\x0f\n\x0bDeathKnight\x10\x06\x12\n\n\
+    \x06Shaman\x10\x07\x12\x08\n\x04Mage\x10\x08\x12\x0b\n\x07Warlock\x10\t\
+    \x12\x08\n\x04Monk\x10\n\x12\t\n\x05Druid\x10\x0b\x1a\0B\0b\x06proto2\
 ";
 
 static file_descriptor_proto_lazy: ::protobuf::rt::LazyV2<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::rt::LazyV2::INIT;

@@ -1,9 +1,9 @@
 syntax = "proto2";
 
-message StructuredMessage {
+message GameState {
     required BotState BotState = 1;
-    required Player Player = 2;
-    optional Target Target = 3;
+    required PlayerInfo Player = 2;
+    optional TargetInfo Target = 3;
 }
 
 enum BotState {
@@ -12,7 +12,7 @@ enum BotState {
     DumpPos = 2;
 }
 
-message Player {
+message PlayerInfo {
     required Unit UnitInfo = 1;
     required Position PosInfo = 2;
     // Since booleans don't work in lua-pb, we pack them into a single u64 instead
@@ -21,7 +21,7 @@ message Player {
     required uint64 Flags = 3;
 }
 
-message Target {
+message TargetInfo {
     required Unit UnitInfo = 1;
 }
 
@@ -53,8 +53,9 @@ message Unit {
 message Position {
     required uint64 MapX = 1;
     required uint64 MapY = 2;
-    required sint64 WorldX = 3;
-    required sint64 WorldY = 4;
-    required uint64 InstanceId = 5;
-    required uint64 Facing = 6;
+    required uint64 MapId = 3;
+    required int64 WorldX = 4;
+    required int64 WorldY = 5;
+    required uint64 InstanceId = 6;
+    required uint64 Facing = 7;
 }

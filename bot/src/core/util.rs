@@ -5,7 +5,7 @@ pub fn hello_world () {
     println!("Hello, world!");
 }
 
-pub fn print_all_info (msg: &Lakeshire::StructuredMessage) {
+pub fn print_all_info (msg: &Lakeshire::GameState) {
     print!("\x1B[2J\x1B[1;1H");
 
     println!("State: {}", translate_bot_state(msg.get_BotState()));
@@ -17,11 +17,12 @@ pub fn print_all_info (msg: &Lakeshire::StructuredMessage) {
 
     println!("\nMap position:");
     let pos = msg.get_Player().get_PosInfo();
+    println!("Map ID:\t{}", pos.get_MapId());
     println!("X:\t{}\nY:\t{}\nFacing:\t{:.2}", pos.get_MapX() as f64 / 1e14, pos.get_MapY() as f64 / 1e14, pos.get_Facing() as f64 / 1e10);
 
     println!("\nWorld position:");
     let pos = msg.get_Player().get_PosInfo();
-    println!("X:\t\t{}\nY:\t\t{}\nInstanceID:\t{:.2}", pos.get_WorldX() as f64 / 1e3, pos.get_WorldY() as f64 / 1e3, pos.get_InstanceId());
+    println!("X:\t\t{}\nY:\t\t{}\nInstanceID:\t{:.2}", pos.get_WorldX() as f64 / 1e5, pos.get_WorldY() as f64 / 1e5, pos.get_InstanceId());
 
     println!("\nFlags:");
     println!("IsOutdoors:\t{}", (msg.get_Player().get_Flags() & 1) != 0);

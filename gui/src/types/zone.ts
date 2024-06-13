@@ -1,5 +1,11 @@
+export enum ZoneCategory {
+    EasternKingdoms = 0,
+    Kalimdor = 1,
+    Dungeon = 2,
+}
+
 export type ZoneInfo = {
-    continent: string;
-    name: string;
-    imageName?: string;
+    category: ZoneCategory
+    id: number,
+    name: string,
 }

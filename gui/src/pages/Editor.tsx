@@ -1,9 +1,8 @@
 import React from "react";
 import EditorMap from "../components/EditorMap";
 import EditorTree from "../components/EditorTree";
-import ZoneData from '../consts/ZoneData'
-import { ZoneInfo } from "../types/Zone";
-import { Store } from "tauri-plugin-store-api";
+import { ZoneInfo } from "../types/zone";
+import ZONES from '../assets/zones.json';
 
 
 type EditorState = {
@@ -20,29 +19,23 @@ type DrawData = {
     width: number;
 }
 
-const store = new Store(".settings.dat");
-
 
 class Editor extends React.Component<{}, EditorState> {
     constructor (props: any) {
         super(props);
 
-        const rawZoneData = ZoneData['Kalimdor'].find(x => x.name == 'Durotar')
-        if (!rawZoneData) throw new Error('Default zone not found');
+        // const rawZoneData = ZoneData['Kalimdor'].find(x => x.name == 'Durotar')
+        // if (!rawZoneData) throw new Error('Default zone not found');
 
         this.state = {
-            currentZoneInfo: {
-                continent: 'Kalimdor',
-                name: rawZoneData.name,
-                imageName: rawZoneData.imageName,
-            }
+            currentZoneInfo: ZONES.find(x => x.name == 'Durotar')
         }
     }
 
-    async handleSave (data: any) {
-        const parsedData = JSON.parse(data) as DrawData;
-        await store.set(`draw-data-${this.state.currentZoneInfo?.name}`, parsedData);
-    }
+    // async handleSave (data: any) {
+    //     const parsedData = JSON.parse(data) as DrawData;
+    //     // await store.set(`draw-data-${this.state.currentZoneInfo?.name}`, parsedData);
+    // }
 
     render () {
         const { currentZoneInfo } = this.state;
@@ -61,7 +54,7 @@ class Editor extends React.Component<{}, EditorState> {
                 <main className="col-span-5 flex flex-col items-center">
                     <EditorMap
                         currentZoneInfo={currentZoneInfo}
-                        handleSave={this.handleSave.bind(this)}
+                        // handleSave={this.handleSave.bind(this)}
                     />
                 </main>
             </ div>
