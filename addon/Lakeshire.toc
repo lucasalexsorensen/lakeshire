@@ -1,8 +1,0 @@
-lua-pb\lua-pb.xml
-
-protos-dist\Lakeshire.lua
-
-Hooks.lua
-PixelInfo.lua
-
-Lakeshire.lua
