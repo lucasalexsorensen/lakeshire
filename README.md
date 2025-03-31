@@ -1,13 +1,11 @@
 # lakeshire
-Lakeshire addon/bot for wow
+Lakeshire is my experimental addon + bot for World of Warcraft.
 
 ## Structure
 * `addon`
     * Lua codebase for the addon
 * `bot`
-    * Contains the Rust codebase for the bot. Also has a cli.
-* `gui`
-    * A desktop gui for various bot purposes. Uses `bot` as a library.
+    * Contains the Rust codebase for the bot + frontend. Also has a cli.
 * `protos`
     * Shared protobuf definitions. Used by `addon` and `bot`
 
