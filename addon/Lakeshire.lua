@@ -8,6 +8,17 @@ ls.commands = {
 	["help"] = function()
 		print("Help goes here..")
 	end,
+	["print"] = function()
+		-- prints the bytes of the protobuf message
+		local ser = ls.testproto:Serialize()
+		local reqpixels = math.ceil(#ser / 3)
+		for i = 1, reqpixels do
+			local r, g, b = string.byte(ser, 3 * (i - 1) + 1, 3 * i + 1)
+			g = tonumber(g) or 0
+			b = tonumber(b) or 0
+			print(r, g, b)
+		end
+	end,
 	["start"] = function()
 		print("Start!")
 		ls.testproto.BotState = 1

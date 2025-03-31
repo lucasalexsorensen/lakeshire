@@ -2,350 +2,350 @@
 local _, ADDONSELF = ...
 
 local t = {
-	-- Table: {1}
-	{
-		["syntax"] = "proto2",
-		["types"] = { 2 },
-	},
-	-- Table: {2}
-	{
-		{ 3 },
-		{ 4 },
-		{ 5 },
-		{ 6 },
-		{ 7 },
-		{ 8 },
-		{ 9 },
-		["GameState"] = { 3 },
-		["PlayerInfo"] = { 5 },
-		["Position"] = { 9 },
-		["BotState"] = { 4 },
-		["Class"] = { 7 },
-		["TargetInfo"] = { 6 },
-		["Unit"] = { 8 },
-	},
-	-- Table: {3}
-	{
-		["fields"] = { 10 },
-		["name"] = "GameState",
-		[".type"] = "message",
-	},
-	-- Table: {4}
-	{
-		[".type"] = "enum",
-		["name"] = "BotState",
-		["values"] = { 11 },
-	},
-	-- Table: {5}
-	{
-		["fields"] = { 12 },
-		["name"] = "PlayerInfo",
-		[".type"] = "message",
-	},
-	-- Table: {6}
-	{
-		["fields"] = { 13 },
-		["name"] = "TargetInfo",
-		[".type"] = "message",
-	},
-	-- Table: {7}
-	{
-		[".type"] = "enum",
-		["name"] = "Class",
-		["values"] = { 14 },
-	},
-	-- Table: {8}
-	{
-		["fields"] = { 15 },
-		["name"] = "Unit",
-		[".type"] = "message",
-	},
-	-- Table: {9}
-	{
-		["fields"] = { 16 },
-		["name"] = "Position",
-		[".type"] = "message",
-	},
-	-- Table: {10}
-	{
-		{ 17 },
-		{ 18 },
-		{ 19 },
-		["Target"] = { 19 },
-		["BotState"] = { 17 },
-		["Player"] = { 18 },
-	},
-	-- Table: {11}
-	{
-		"Running",
-		"DumpPos",
-		[0] = "Stopped",
-		["Stopped"] = 0,
-		["DumpPos"] = 2,
-		["Running"] = 1,
-	},
-	-- Table: {12}
-	{
-		{ 20 },
-		{ 21 },
-		{ 22 },
-		["Flags"] = { 22 },
-		["PosInfo"] = { 21 },
-		["UnitInfo"] = { 20 },
-	},
-	-- Table: {13}
-	{
-		{ 23 },
-		["UnitInfo"] = { 23 },
-	},
-	-- Table: {14}
-	{
-		"Warrior",
-		"Paladin",
-		"Hunter",
-		"Rogue",
-		"Priest",
-		"DeathKnight",
-		"Shaman",
-		"Mage",
-		"Warlock",
-		"Monk",
-		"Druid",
-		[0] = "None",
-		["Paladin"] = 2,
-		["Shaman"] = 7,
-		["Monk"] = 10,
-		["Rogue"] = 4,
-		["Mage"] = 8,
-		["Druid"] = 11,
-		["Warlock"] = 9,
-		["Warrior"] = 1,
-		["Priest"] = 5,
-		["Hunter"] = 3,
-		["DeathKnight"] = 6,
-		["None"] = 0,
-	},
-	-- Table: {15}
-	{
-		{ 24 },
-		{ 25 },
-		{ 26 },
-		{ 27 },
-		{ 28 },
-		{ 29 },
-		{ 30 },
-		["HealthMax"] = { 28 },
-		["Name"] = { 24 },
-		["PowerMax"] = { 30 },
-		["Class"] = { 26 },
-		["Level"] = { 25 },
-		["HealthCurrent"] = { 27 },
-		["PowerCurrent"] = { 29 },
-	},
-	-- Table: {16}
-	{
-		{ 31 },
-		{ 32 },
-		{ 33 },
-		{ 34 },
-		{ 35 },
-		{ 36 },
-		{ 37 },
-		["WorldY"] = { 35 },
-		["MapId"] = { 33 },
-		["InstanceId"] = { 36 },
-		["MapY"] = { 32 },
-		["Facing"] = { 37 },
-		["WorldX"] = { 34 },
-		["MapX"] = { 31 },
-	},
-	-- Table: {17}
-	{
-		["ftype"] = "BotState",
-		["name"] = "BotState",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 1,
-	},
-	-- Table: {18}
-	{
-		["ftype"] = "PlayerInfo",
-		["name"] = "Player",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 2,
-	},
-	-- Table: {19}
-	{
-		["ftype"] = "TargetInfo",
-		["name"] = "Target",
-		[".type"] = "field",
-		["rule"] = "optional",
-		["tag"] = 3,
-	},
-	-- Table: {20}
-	{
-		["ftype"] = "Unit",
-		["name"] = "UnitInfo",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 1,
-	},
-	-- Table: {21}
-	{
-		["ftype"] = "Position",
-		["name"] = "PosInfo",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 2,
-	},
-	-- Table: {22}
-	{
-		["ftype"] = "uint64",
-		["name"] = "Flags",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 3,
-	},
-	-- Table: {23}
-	{
-		["ftype"] = "Unit",
-		["name"] = "UnitInfo",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 1,
-	},
-	-- Table: {24}
-	{
-		["ftype"] = "string",
-		["name"] = "Name",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 1,
-	},
-	-- Table: {25}
-	{
-		["ftype"] = "int64",
-		["name"] = "Level",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 2,
-	},
-	-- Table: {26}
-	{
-		["ftype"] = "Class",
-		["name"] = "Class",
-		[".type"] = "field",
-		["rule"] = "optional",
-		["tag"] = 3,
-	},
-	-- Table: {27}
-	{
-		["ftype"] = "int64",
-		["name"] = "HealthCurrent",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 4,
-	},
-	-- Table: {28}
-	{
-		["ftype"] = "int64",
-		["name"] = "HealthMax",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 5,
-	},
-	-- Table: {29}
-	{
-		["ftype"] = "int64",
-		["name"] = "PowerCurrent",
-		[".type"] = "field",
-		["rule"] = "optional",
-		["tag"] = 6,
-	},
-	-- Table: {30}
-	{
-		["ftype"] = "int64",
-		["name"] = "PowerMax",
-		[".type"] = "field",
-		["rule"] = "optional",
-		["tag"] = 7,
-	},
-	-- Table: {31}
-	{
-		["ftype"] = "uint64",
-		["name"] = "MapX",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 1,
-	},
-	-- Table: {32}
-	{
-		["ftype"] = "uint64",
-		["name"] = "MapY",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 2,
-	},
-	-- Table: {33}
-	{
-		["ftype"] = "uint64",
-		["name"] = "MapId",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 3,
-	},
-	-- Table: {34}
-	{
-		["ftype"] = "int64",
-		["name"] = "WorldX",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 4,
-	},
-	-- Table: {35}
-	{
-		["ftype"] = "int64",
-		["name"] = "WorldY",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 5,
-	},
-	-- Table: {36}
-	{
-		["ftype"] = "uint64",
-		["name"] = "InstanceId",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 6,
-	},
-	-- Table: {37}
-	{
-		["ftype"] = "uint64",
-		["name"] = "Facing",
-		[".type"] = "field",
-		["rule"] = "required",
-		["tag"] = 7,
-	},
+-- Table: {1}
+{
+   ["syntax"]="proto2",
+   ["types"]={2},
+},
+-- Table: {2}
+{
+   {3},
+   {4},
+   {5},
+   {6},
+   {7},
+   {8},
+   {9},
+   ["GameState"]={3},
+   ["PlayerInfo"]={5},
+   ["Position"]={9},
+   ["BotState"]={4},
+   ["Class"]={7},
+   ["TargetInfo"]={6},
+   ["Unit"]={8},
+},
+-- Table: {3}
+{
+   ["fields"]={10},
+   ["name"]="GameState",
+   [".type"]="message",
+},
+-- Table: {4}
+{
+   [".type"]="enum",
+   ["name"]="BotState",
+   ["values"]={11},
+},
+-- Table: {5}
+{
+   ["fields"]={12},
+   ["name"]="PlayerInfo",
+   [".type"]="message",
+},
+-- Table: {6}
+{
+   ["fields"]={13},
+   ["name"]="TargetInfo",
+   [".type"]="message",
+},
+-- Table: {7}
+{
+   [".type"]="enum",
+   ["name"]="Class",
+   ["values"]={14},
+},
+-- Table: {8}
+{
+   ["fields"]={15},
+   ["name"]="Unit",
+   [".type"]="message",
+},
+-- Table: {9}
+{
+   ["fields"]={16},
+   ["name"]="Position",
+   [".type"]="message",
+},
+-- Table: {10}
+{
+   {17},
+   {18},
+   {19},
+   ["Target"]={19},
+   ["BotState"]={17},
+   ["Player"]={18},
+},
+-- Table: {11}
+{
+   "Running",
+   "DumpPos",
+   [0]="Stopped",
+   ["Stopped"]=0,
+   ["DumpPos"]=2,
+   ["Running"]=1,
+},
+-- Table: {12}
+{
+   {20},
+   {21},
+   {22},
+   ["Flags"]={22},
+   ["PosInfo"]={21},
+   ["UnitInfo"]={20},
+},
+-- Table: {13}
+{
+   {23},
+   ["UnitInfo"]={23},
+},
+-- Table: {14}
+{
+   "Warrior",
+   "Paladin",
+   "Hunter",
+   "Rogue",
+   "Priest",
+   "DeathKnight",
+   "Shaman",
+   "Mage",
+   "Warlock",
+   "Monk",
+   "Druid",
+   [0]="None",
+   ["Paladin"]=2,
+   ["Shaman"]=7,
+   ["Monk"]=10,
+   ["Rogue"]=4,
+   ["Mage"]=8,
+   ["Druid"]=11,
+   ["Warlock"]=9,
+   ["Warrior"]=1,
+   ["Priest"]=5,
+   ["Hunter"]=3,
+   ["DeathKnight"]=6,
+   ["None"]=0,
+},
+-- Table: {15}
+{
+   {24},
+   {25},
+   {26},
+   {27},
+   {28},
+   {29},
+   {30},
+   ["HealthMax"]={28},
+   ["Name"]={24},
+   ["PowerMax"]={30},
+   ["Class"]={26},
+   ["Level"]={25},
+   ["HealthCurrent"]={27},
+   ["PowerCurrent"]={29},
+},
+-- Table: {16}
+{
+   {31},
+   {32},
+   {33},
+   {34},
+   {35},
+   {36},
+   {37},
+   ["WorldY"]={35},
+   ["MapId"]={33},
+   ["InstanceId"]={36},
+   ["MapY"]={32},
+   ["Facing"]={37},
+   ["WorldX"]={34},
+   ["MapX"]={31},
+},
+-- Table: {17}
+{
+   ["ftype"]="BotState",
+   ["name"]="BotState",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=1,
+},
+-- Table: {18}
+{
+   ["ftype"]="PlayerInfo",
+   ["name"]="Player",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=2,
+},
+-- Table: {19}
+{
+   ["ftype"]="TargetInfo",
+   ["name"]="Target",
+   [".type"]="field",
+   ["rule"]="optional",
+   ["tag"]=3,
+},
+-- Table: {20}
+{
+   ["ftype"]="Unit",
+   ["name"]="UnitInfo",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=1,
+},
+-- Table: {21}
+{
+   ["ftype"]="Position",
+   ["name"]="PosInfo",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=2,
+},
+-- Table: {22}
+{
+   ["ftype"]="uint64",
+   ["name"]="Flags",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=3,
+},
+-- Table: {23}
+{
+   ["ftype"]="Unit",
+   ["name"]="UnitInfo",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=1,
+},
+-- Table: {24}
+{
+   ["ftype"]="string",
+   ["name"]="Name",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=1,
+},
+-- Table: {25}
+{
+   ["ftype"]="int64",
+   ["name"]="Level",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=2,
+},
+-- Table: {26}
+{
+   ["ftype"]="Class",
+   ["name"]="Class",
+   [".type"]="field",
+   ["rule"]="optional",
+   ["tag"]=3,
+},
+-- Table: {27}
+{
+   ["ftype"]="int64",
+   ["name"]="HealthCurrent",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=4,
+},
+-- Table: {28}
+{
+   ["ftype"]="int64",
+   ["name"]="HealthMax",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=5,
+},
+-- Table: {29}
+{
+   ["ftype"]="int64",
+   ["name"]="PowerCurrent",
+   [".type"]="field",
+   ["rule"]="optional",
+   ["tag"]=6,
+},
+-- Table: {30}
+{
+   ["ftype"]="int64",
+   ["name"]="PowerMax",
+   [".type"]="field",
+   ["rule"]="optional",
+   ["tag"]=7,
+},
+-- Table: {31}
+{
+   ["ftype"]="uint64",
+   ["name"]="MapX",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=1,
+},
+-- Table: {32}
+{
+   ["ftype"]="uint64",
+   ["name"]="MapY",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=2,
+},
+-- Table: {33}
+{
+   ["ftype"]="uint64",
+   ["name"]="MapId",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=3,
+},
+-- Table: {34}
+{
+   ["ftype"]="int64",
+   ["name"]="WorldX",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=4,
+},
+-- Table: {35}
+{
+   ["ftype"]="int64",
+   ["name"]="WorldY",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=5,
+},
+-- Table: {36}
+{
+   ["ftype"]="uint64",
+   ["name"]="InstanceId",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=6,
+},
+-- Table: {37}
+{
+   ["ftype"]="uint64",
+   ["name"]="Facing",
+   [".type"]="field",
+   ["rule"]="required",
+   ["tag"]=7,
+},
 }
-local function loadast()
-	local tables = t
-	for idx = 1, #tables do
-		local tolinki = {}
-		for i, v in pairs(tables[idx]) do
-			if type(v) == "table" then
-				tables[idx][i] = tables[v[1]]
-			end
-			if type(i) == "table" and tables[i[1]] then
-				table.insert(tolinki, { i, tables[i[1]] })
-			end
-		end
-		-- link indices
-		for _, v in ipairs(tolinki) do
-			tables[idx][v[2]], tables[idx][v[1]] = tables[idx][v[1]], nil
-		end
-	end
-	return tables[1]
-end
+   local function loadast()
+      local tables = t
+      for idx = 1,#tables do
+	 local tolinki = {}
+	 for i,v in pairs( tables[idx] ) do
+	    if type( v ) == "table" then
+	       tables[idx][i] = tables[v[1]]
+	    end
+	    if type( i ) == "table" and tables[i[1]] then
+	       table.insert( tolinki,{ i,tables[i[1]] } )
+	    end
+	 end
+	 -- link indices
+	 for _,v in ipairs( tolinki ) do
+	    tables[idx][v[2]],tables[idx][v[1]] =  tables[idx][v[1]],nil
+	 end
+      end
+      return tables[1]
+   end
 
 ADDONSELF.pbast = loadast()

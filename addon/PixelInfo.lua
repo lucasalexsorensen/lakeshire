@@ -1,5 +1,5 @@
 local ADDONNAME, ls = ...
-local CELL_SIZE = 1.6
+local CELL_SIZE = 10
 local METAPIXELS = 2
 ls.pixelinfo = {}
 ls.pixelinfo.length = 0
