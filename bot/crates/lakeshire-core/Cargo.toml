@@ -1,0 +1,26 @@
+[package]
+name = "lakeshire-core"
+version = "0.1.0"
+edition = { workspace = true }
+
+[dependencies]
+scrap = { version = "0.5.0", optional = true }
+screencapturekit = { version = "0.3.5", optional = true }
+core-media-rs = { version = "0.3.4", optional = true }
+xcap = { version = "0.6.1", optional = true }
+png = "0.17.16"
+prost = "0.13.5"
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+enigo = { workspace = true }
+active-win-pos-rs = "0.9.0"
+
+[build-dependencies]
+prost-build = "0.13.5"
+
+[features]
+default = ["xcap"]
+xcap = ["dep:xcap"]
+scrap = ["dep:scrap"]
+screencapturekit = ["dep:screencapturekit", "dep:core-media-rs"]
+fake = []

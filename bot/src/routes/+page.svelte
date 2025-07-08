@@ -1,53 +1,35 @@
 <script lang="ts">
-  import { initialize } from "$lib/initialize";
   import { registerShortcuts } from "$lib/shortcuts";
-  import { invoke } from "@tauri-apps/api/core";
-  import { onMount } from "svelte";
-  import protobuf from 'protobufjs'
+  import AreaMap from "$lib/components/AreaMap.svelte";
+  import { gameState } from "$lib/stores";
+  import { toJson } from "@bufbuild/protobuf";
+  import { GameStateSchema } from "$lib/protos/Lakeshire_pb";
 
-  let name = $state("");
-  let greetMsg = $state("");
-
-  let gameStateSchema = $state<protobuf.Type | undefined>(undefined);
-  let gameState = $state<protobuf.Message | undefined>(undefined);
-
-  async function greet(event: Event) {
-    event.preventDefault();
-
-  }
-
-  onMount(async () => {
-    await initialize();
-    try {
-      await registerShortcuts();
-    } catch (error) {}
-
-    const root: protobuf.Root = await new Promise((resolve, reject) => {
-      protobuf.load('/protos/Lakeshire.proto', (err, root) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(root!);
+  // prints the key,value pairs of an object like 'k=v,k=v,...,k=v'
+  // it should work recursively
+  const prettifyObject = (obj?: Record<string, any>): string => {
+    if (!obj) return "";
+    return Object.entries(obj)
+      .map(([key, value]) => {
+        if (typeof value === "object") {
+          return `${key}=(${prettifyObject(value)})`;
         }
+        return `${key}=${value}`;
       })
-    })
-    gameStateSchema = root.lookupType("lakeshire.GameState");
-
-    readGameState();
-  })
-
-  async function readGameState() {
-    const arrayBuffer: ArrayBuffer = await invoke("read_game_state");
-    gameState = gameStateSchema?.decode(new Uint8Array(arrayBuffer));
-  }
-
-  setInterval(readGameState, 100);
+      .join(", ");
+  };
 </script>
 
-<main class="container bg-sky-100">
-  {#if gameState}
-    <pre>{JSON.stringify(gameState, null, 2)}</pre>
+<div
+  class="bg-gray-900 text-white w-screen h-screen rounded-xl flex flex-col items-center"
+>
+  {#if $gameState}
+    <AreaMap />
+    <div class="p-5">
+      <p>{prettifyObject(toJson(GameStateSchema, $gameState)["Player"])}</p>
+      <p>{prettifyObject(toJson(GameStateSchema, $gameState)["Target"])}</p>
+    </div>
   {:else}
     <p>Loading...</p>
   {/if}
-</main>
+</div>

@@ -1,0 +1,24 @@
+[workspace]
+members = ["crates/*", "crates/lakeshire-dx"]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+
+[workspace.dependencies]
+lakeshire-core = { path = "crates/lakeshire-core" }
+anyhow = "1.0.97"
+thiserror = "2.0.12"
+enigo = "0.5.0"
+
+[profile]
+
+[profile.wasm-dev]
+inherits = "dev"
+opt-level = 1
+
+[profile.server-dev]
+inherits = "dev"
+
+[profile.android-dev]
+inherits = "dev"
