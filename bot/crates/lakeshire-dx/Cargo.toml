@@ -4,10 +4,14 @@ version = "0.1.0"
 authors = ["Lucas Sorensen <lucas.alex.sorensen@gmail.com>"]
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-dioxus = { version = "0.6.0", features = [] }
+lakeshire-core = { path = "../lakeshire-core" }
+dioxus = { version = "0.7.0-alpha.2", features = ["router"] }
+lazy_static = "1.5.0"
+active-win-pos-rs = "0.9.0"
+dioxus-free-icons = { version = "0.9.0", features = ["font-awesome-regular"] }
+prost = { workspace = true }
+plotters = "0.3.7"
 
 [features]
 default = ["desktop"]

@@ -1,28 +1,37 @@
-import { getAllWindows } from "@tauri-apps/api/window";
-import { unregisterAll } from "@tauri-apps/plugin-global-shortcut";
 import { attachConsole } from "@tauri-apps/plugin-log";
-import { registerShortcuts } from "./shortcuts";
+import { invoke } from "@tauri-apps/api/core";
+import { listen } from "@tauri-apps/api/event";
+import { handleGameStateScanned, handleBotStateChanged } from "$lib/events";
+import { BotStateEventSchema, GameStateScannedEventSchema } from "./types";
 
-export function initialize(): () => void {
+export function initialize(): () => Promise<void> {
   const detachPromise = attachConsole();
-  initializeWindows();
-  registerShortcuts();
+  const unlisteners: Array<Promise<() => void>> = [];
+  window.addEventListener("unload", function (e) {});
 
-  const uninitialize = () => {
+  unlisteners.push(
+    listen("bot-state-changed", (event) => {
+      handleBotStateChanged(BotStateEventSchema.parse(event.payload));
+    })
+  );
+
+  unlisteners.push(
+    listen("game-state-scanned", (event) => {
+      handleGameStateScanned(GameStateScannedEventSchema.parse(event.payload));
+    })
+  );
+
+  invoke("start_scanner");
+
+  const uninitialize = async () => {
+    for (const u of unlisteners) {
+      (await u)();
+    }
+    invoke("stop_scanner");
     detachPromise.then((detach) => {
       detach();
     });
-    unregisterAll();
   };
 
   return uninitialize;
-}
-
-async function initializeWindows() {
-  const allWindows = await getAllWindows();
-  for (const window of allWindows) {
-    // await window.setIgnoreCursorEvents(true);
-    // await window.setVisibleOnAllWorkspaces(true);
-    await window.setAlwaysOnTop(true);
-  }
 }

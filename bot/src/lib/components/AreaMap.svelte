@@ -1,6 +1,11 @@
 <script lang="ts">
-  import { gameState } from "$lib/stores";
-  import { onMount } from "svelte";
+  import type { GameState } from "$lib/protos/Lakeshire_pb";
+
+  type Props = {
+    gameState: GameState;
+  };
+
+  let { gameState }: Props = $props();
 
   const facingLineLength = 5;
 
@@ -8,26 +13,26 @@
     1411: 14,
   };
 
-  const mapId = $derived(Number($gameState!.Player!.PosInfo!.MapId));
+  const mapId = $derived(Number(gameState.Player!.PosInfo!.MapId));
   const areaId = $derived(mapIdToAreaId[mapId] as number);
 
   // Map coordinates are floats between 0 and 100
   // these are normalized to the map size
   const playerPos = $derived([
-    (Number($gameState!.Player!.PosInfo!.MapX) / 1e14) * 100,
-    (Number($gameState!.Player!.PosInfo!.MapY) / 1e14) * 100,
+    (Number(gameState.Player!.PosInfo!.MapX) / 1e14) * 100,
+    (Number(gameState.Player!.PosInfo!.MapY) / 1e14) * 100,
   ]);
 
   // Facing is a float denoting the radians of the player's facing direction
   // 0 = north
   const playerFacing = $derived(
-    Number($gameState!.Player!.PosInfo!.Facing) / 1e10
+    Number(gameState.Player!.PosInfo!.Facing) / 1e10
   );
 </script>
 
 <div class="relative">
   <img
-    class="object-fill w-screen"
+    class="object-fill w-[85vw] rounded-xl"
     src={`/areas/${areaId}.png`}
     alt={`Map of ${areaId}`}
   />

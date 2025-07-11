@@ -183,30 +183,3 @@ impl Reader {
         self.idx += self.half_stride * 4;
     }
 }
-
-/// Starts a scan loop
-/// This will run forever
-pub fn start_scan_loop(game_state: Arc<Mutex<GameState>>) {
-    let mut screen_grabber = ScreenGrabber::default();
-
-    loop {
-        let screenshot = {
-            screen_grabber
-                .get_screenshot()
-                .map_err(|e| e.to_string())
-                .unwrap()
-        };
-        let game_state_bytes = Scanner::from(screenshot).scan_bitmap();
-        if let Err(e) = game_state_bytes {
-            println!("Error scanning game state: {}", e);
-            continue;
-        }
-        let game_state_bytes = game_state_bytes.unwrap();
-        let new_game_state = deserialize_game_state(&game_state_bytes).unwrap();
-        let new_state_clone = new_game_state.clone();
-        {
-            let mut x = game_state.lock().unwrap();
-            *x = new_game_state;
-        }
-    }
-}

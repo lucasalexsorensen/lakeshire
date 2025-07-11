@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "bot",
+  "productName": "Lakeshire",
   "version": "0.1.0",
-  "identifier": "com.lucasalexsorensen.bot",
+  "identifier": "com.lucasalexsorensen.lakeshire",
   "build": {
     "beforeDevCommand": "bun run dev",
     "devUrl": "http://localhost:1420",
@@ -13,7 +13,7 @@
     "macOSPrivateApi": true,
     "windows": [
       {
-        "title": "bot",
+        "title": "Lakeshire",
         "width": 800,
         "height": 600,
         "transparent": true,

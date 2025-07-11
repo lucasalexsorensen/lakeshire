@@ -1,5 +1,6 @@
 [workspace]
-members = ["crates/*", "crates/lakeshire-dx"]
+members = ["crates/*"]
+exclude = ["crates/lakeshire-tauri"]
 resolver = "2"
 
 [workspace.package]
@@ -10,8 +11,7 @@ lakeshire-core = { path = "crates/lakeshire-core" }
 anyhow = "1.0.97"
 thiserror = "2.0.12"
 enigo = "0.5.0"
-
-[profile]
+prost = "0.14.1"
 
 [profile.wasm-dev]
 inherits = "dev"

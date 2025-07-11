@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    bot_lib::run()
+    lakeshire_tauri_lib::run()
 }
