@@ -1,20 +1,31 @@
-import type { BotStateEvent, GameStateScannedEvent } from "./types";
+import type {
+  BusEvent,
+  GameStateScannedEvent,
+  ScannerStateChangedEvent,
+} from "./types";
 import { botState, gameState } from "./stores";
 import { GameStateSchema } from "$lib/protos/Lakeshire_pb";
 import { fromBinary } from "@bufbuild/protobuf";
 
-export function handleBotStateChanged(payload: BotStateEvent) {
+export function handleBusEvent(payload: BusEvent) {
   switch (payload.type) {
-    case "ScannerRunningChanged":
-      botState.update((state) => ({
-        ...state,
-        scanner_running: payload.scanner_running,
-      }));
+    case "ScannerStateChanged":
+      handleScannerStateChanged(payload);
+      break;
+    case "GameStateScanned":
+      handleGameStateScanned(payload);
       break;
   }
 }
 
-export function handleGameStateScanned(payload: GameStateScannedEvent) {
+function handleScannerStateChanged(payload: ScannerStateChangedEvent) {
+  botState.update((state) => ({
+    ...state,
+    scanner_running: payload.value,
+  }));
+}
+
+function handleGameStateScanned(payload: GameStateScannedEvent) {
   const deserialized = fromBinary(
     GameStateSchema,
     new Uint8Array(payload.bytes)

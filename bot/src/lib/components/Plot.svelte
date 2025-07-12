@@ -44,7 +44,8 @@
             display: false,
           },
           y: {
-            beginAtZero: true,
+            min: 0,
+            max: 2 * Math.PI,
           },
         },
       },

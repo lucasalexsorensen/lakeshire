@@ -10,7 +10,7 @@ pub fn Plot(values: Vec<(f64, f64)>) -> Element {
             .margin(1)
             .set_label_area_size(LabelAreaPosition::Left, (5i32).percent_width())
             .set_label_area_size(LabelAreaPosition::Bottom, (10i32).percent_height())
-            .build_cartesian_2d(0f64..100f64, 0f64..10f64)?;
+            .build_cartesian_2d(0f64..100f64, -4.0..4.0)?;
 
         chart
             .configure_mesh()

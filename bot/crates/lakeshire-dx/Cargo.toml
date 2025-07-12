@@ -5,16 +5,18 @@ authors = ["Lucas Sorensen <lucas.alex.sorensen@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-lakeshire-core = { path = "../lakeshire-core" }
+lakeshire-core = { workspace = true }
 dioxus = { version = "0.7.0-alpha.2", features = ["router"] }
 lazy_static = "1.5.0"
-active-win-pos-rs = "0.9.0"
+active-win-pos-rs = { workspace = true }
 dioxus-free-icons = { version = "0.9.0", features = ["font-awesome-regular"] }
 prost = { workspace = true }
 plotters = "0.3.7"
+anyhow = { workspace = true }
 
 [features]
 default = ["desktop"]
 web = ["dioxus/web"]
 desktop = ["dioxus/desktop"]
 mobile = ["dioxus/mobile"]
+fake = []

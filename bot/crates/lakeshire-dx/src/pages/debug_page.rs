@@ -1,6 +1,6 @@
 use crate::{components::Plot, global::GlobalState};
 use dioxus::prelude::*;
-use lakeshire_core::serialization::protos::GameState;
+use lakeshire_core::serialization::FixedPositionInfo;
 use lazy_static::lazy_static;
 use std::collections::VecDeque;
 
@@ -19,9 +19,11 @@ pub fn DebugPage() -> Element {
     }
     let game_state = game_state.clone().unwrap();
 
+    let player_pos_info_fixed = FixedPositionInfo::from(game_state.player.pos_info);
+
     let recent_values = &mut recent_values.write();
     recent_values.pop_front();
-    recent_values.push_back(game_state.player.pos_info.facing as f64 / 1e10);
+    recent_values.push_back(player_pos_info_fixed.facing as f64);
 
     let values = X_VALUES
         .iter()

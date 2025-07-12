@@ -1,6 +1,7 @@
 use crate::components::AreaMap;
 use crate::global::GlobalState;
 use dioxus::prelude::*;
+use lakeshire_core::serialization::FixedPositionInfo;
 
 #[component]
 pub fn HomePage() -> Element {
@@ -16,13 +17,9 @@ pub fn HomePage() -> Element {
         1411 => 14,
         _ => panic!("Unknown area id: {}", game_state.player.pos_info.map_id),
     };
-    let player_pos = (
-        game_state.player.pos_info.map_x as f32 / 1e14,
-        game_state.player.pos_info.map_y as f32 / 1e14,
-    );
-    let player_facing = game_state.player.pos_info.facing as f32 / 1e10;
+    let pos_info = FixedPositionInfo::from(game_state.player.pos_info);
 
     rsx! {
-        AreaMap { area_id, player_pos, player_facing }
+        AreaMap { area_id, pos_info }
     }
 }

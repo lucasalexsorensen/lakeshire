@@ -1,3 +1,5 @@
+#![cfg(feature = "fake")]
+
 use lakeshire_core::serialization::protos::GameState;
 use prost::Message;
 

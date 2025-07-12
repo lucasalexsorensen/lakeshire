@@ -47,4 +47,3 @@
     <circle cx={playerPos[0]} cy={playerPos[1]} r="1" class="fill-red-500" />
   </svg>
 </div>
-{playerFacing}

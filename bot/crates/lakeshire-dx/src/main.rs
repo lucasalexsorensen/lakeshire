@@ -2,10 +2,12 @@ mod components;
 mod faker;
 mod global;
 mod pages;
-use dioxus::prelude::*;
+mod tasks;
+use dioxus::{
+    desktop::{use_global_shortcut, use_window, HotKeyState},
+    prelude::*,
+};
 use global::GlobalState;
-
-// use global::GAME_STATE;
 
 use lakeshire_core::serialization::protos::GameState;
 use pages::{DebugPage, HomePage};
@@ -18,34 +20,20 @@ fn main() {
 
 #[component]
 fn App() -> Element {
-    let mut global_state = use_context_provider(|| GlobalState {
+    let global_state = use_context_provider(|| GlobalState {
         game_state: SyncSignal::new_maybe_sync(None::<GameState>),
     });
 
     use_hook(|| {
-        let mut faker = faker::GameStateFaker::default();
-        std::thread::spawn(move || loop {
-            std::thread::sleep(std::time::Duration::from_millis(16));
-            global_state.game_state.set(Some(faker.generate()));
-        });
+        tasks::start_scanner_task(global_state);
     });
 
-    let mut active_window_title = use_signal_sync(|| None::<String>);
+    let active_window_title = use_signal_sync(|| None::<String>);
     use_hook(|| {
-        std::thread::spawn(move || loop {
-            std::thread::sleep(std::time::Duration::from_millis(250));
-            let old_val = active_window_title();
-            let window =
-                active_win_pos_rs::get_active_window().expect("Error while getting active window");
-
-            let new_val = Some(window.title);
-
-            if new_val != old_val {
-                println!("new_val: {:?}", &new_val);
-                active_window_title.set(new_val);
-            }
-        });
+        tasks::start_active_window_monitor_task(active_window_title);
     });
+
+    setup_shortcuts();
 
     rsx! {
         document::Link { rel: "stylesheet", href: TAILWIND_CSS }
@@ -94,4 +82,15 @@ fn NavBar() -> Element {
             Outlet::<Route> {}
         }
     }
+}
+
+fn setup_shortcuts() {
+    _ = use_global_shortcut("ctrl+l", move |state| {
+        let window = use_window();
+        if state != HotKeyState::Pressed {
+            return;
+        }
+        // window.set_visible(!window.is_visible());
+        window.devtool();
+    });
 }

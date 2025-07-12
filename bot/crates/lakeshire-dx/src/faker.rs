@@ -16,12 +16,14 @@ impl GameStateFaker {
         let rotation = (self.i as f32 * 0.25) % (2.0 * std::f32::consts::PI);
         state.player.pos_info.facing = (rotation * 1e10) as u64;
 
-        let new_pos = (
-            (self.i as f32 / 25.0).sin() * 0.05 + 0.5,
-            (self.i as f32 / 25.0).cos() * 0.05 + 0.5,
-        );
-        state.player.pos_info.map_x = (new_pos.0 * 1e14) as u64;
-        state.player.pos_info.map_y = (new_pos.1 * 1e14) as u64;
+        // let new_pos = (
+        //     (self.i as f32 / 25.0).sin() * 0.05 + 0.5,
+        //     (self.i as f32 / 25.0).cos() * 0.05 + 0.5,
+        // );
+        // state.player.pos_info.map_x = (new_pos.0 * 1e14) as u64;
+        // state.player.pos_info.map_y = (new_pos.1 * 1e14) as u64;
+        state.player.pos_info.map_x = (0.5 * 1e14) as u64;
+        state.player.pos_info.map_y = (0.5 * 1e14) as u64;
 
         state
     }

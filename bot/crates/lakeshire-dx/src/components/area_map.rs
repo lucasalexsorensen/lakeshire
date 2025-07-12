@@ -1,48 +1,51 @@
 use dioxus::prelude::*;
+use lakeshire_core::serialization::FixedPositionInfo;
 
 include!(concat!(env!("OUT_DIR"), "/areas_assets.rs"));
 
 #[derive(PartialEq, Props, Clone)]
 pub struct AreaMapProps {
     pub area_id: usize,
-    pub player_pos: (f32, f32),
-    pub player_facing: f32,
+    pub pos_info: FixedPositionInfo,
 }
 
 #[component]
 pub fn AreaMap(props: AreaMapProps) -> Element {
     let area_asset = AREA_MAPS.get(&props.area_id);
+    if area_asset.is_none() {
+        return rsx! { "Area map not found for ID = {props.area_id:?}" };
+    }
+    let area_asset = area_asset.unwrap();
     rsx! {
-        if let Some(area_asset) = area_asset {
-            PlayerMarker { pos: props.player_pos, facing: props.player_facing }
+        div {
+            class: "relative w-full h-full",
+            onmousedown: move |e| {},
+            onmousemove: move |e| {},
+            onmouseup: move |e| {},
+            PlayerMarker { pos_info: props.pos_info }
             img { src: *area_asset, class: "w-full h-full rounded-md" }
-        } else {
-            "Area map not found for ID = {props.area_id:?}"
         }
-
     }
 }
 
-#[derive(PartialEq, Props, Clone)]
-pub struct PlayerMarkerProps {
-    pub pos: (f32, f32),
-    pub facing: f32,
-}
-
 #[component]
-pub fn PlayerMarker(props: PlayerMarkerProps) -> Element {
-    let (left_perc, top_perc) = (props.pos.0 * 100.0, props.pos.1 * 100.0);
+pub fn PlayerMarker(pos_info: FixedPositionInfo) -> Element {
+    let (left_perc, top_perc) = (
+        pos_info.map_position.x * 100.0,
+        pos_info.map_position.y * 100.0,
+    );
     let dot_style = format!("left: {}%; top: {}%;", left_perc, top_perc);
-
-    // facing is in radians from [0,2Pi], where 0 = north
-    let facing_deg = props.facing * 180.0 / std::f32::consts::PI - 90.0;
 
     // Position stick so its left end is at the dot's center
     // dot is w-2 h-2 (8px), stick is w-4 h-1 (16px x 4px)
     // offset by half the dot size to center the stick's start point
+
+    // the facing is 0rad at north, and increasing counterclockwise
+    // which is different than CSS's rotate(), hence the negative sign
+    let fixed_facing = pos_info.facing + std::f64::consts::PI / 2.0;
     let stick_style = format!(
-        "left: calc({}% + 4px); top: calc({}% + 2px); transform-origin: left center; transform: rotate({}deg);",
-        left_perc, top_perc, facing_deg
+        "left: calc({}% + 4px); top: calc({}% + 2px); transform-origin: left center; transform: rotate(-{}rad);",
+        left_perc, top_perc, fixed_facing
     );
 
     rsx! {
