@@ -1,10 +1,14 @@
 local ADDONNAME, ls = ...
 local CELL_SIZE = 10
 local METAPIXELS = 2
+
+local LEFT_OFFSET = 5
+local BOTTOM_OFFSET = 15
+
 ls.pixelinfo = {}
 ls.pixelinfo.length = 0
 ls.pixelinfo.topframe = CreateFrame("Frame", "PixelInfo")
-ls.pixelinfo.topframe:SetPoint("BOTTOMLEFT", 0, 0)
+ls.pixelinfo.topframe:SetPoint("BOTTOMLEFT", LEFT_OFFSET, BOTTOM_OFFSET)
 ls.pixelinfo.frames = {}
 
 function ls:InitFrame(name)
@@ -29,8 +33,8 @@ function ls.pixelinfo:OrderFrames()
 			"BOTTOMLEFT",
 			UIParent,
 			"BOTTOMLEFT",
-			CELL_SIZE * (j % gridwidth),
-			CELL_SIZE * (math.floor(j / gridwidth))
+			CELL_SIZE * (j % gridwidth) + LEFT_OFFSET,
+			CELL_SIZE * (math.floor(j / gridwidth)) + BOTTOM_OFFSET
 		)
 	end
 end
