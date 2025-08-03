@@ -6,6 +6,8 @@ Lakeshire is my experimental addon + bot for World of Warcraft.
     * Lua codebase for the addon
 * `bot`
     * Contains the Rust codebase for the bot + frontend. Also has a cli.
+* `lakeshire-py`
+    * Python codebase for the bot. Also has a cli.
 * `protos`
     * Shared protobuf definitions. Used by `addon` and `bot`
 

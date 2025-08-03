@@ -9,7 +9,6 @@ import click
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import numpy as np
-import pyautogui
 import pygetwindow as pgw
 from PIL import Image
 from pynput.keyboard import Controller
@@ -267,5 +266,5 @@ def plot():
 
     agent_thread = threading.Thread(target=agent_loop, daemon=True)
     agent_thread.start()
-    ani = animation.FuncAnimation(fig=fig, func=update_loop, interval=5, blit=True)
+    _ = animation.FuncAnimation(fig=fig, func=update_loop, interval=5, blit=True)
     plt.show()
